@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
 using PhotoGallery.Persistence;
 
 namespace PhotoGallery.Controllers
 {
+    [Authorize]
     public class AlbumsController : Controller
     {
         private GalleryContext db = new GalleryContext();
@@ -18,7 +20,8 @@ namespace PhotoGallery.Controllers
         // GET: Albums
         public ActionResult Index()
         {
-            return View(db.Albums.ToList());
+            string userId = User.Identity.GetUserId();
+            return View(db.Albums.Where(x => x.UserId == userId).ToList());
         }
 
         // GET: Albums/Details/5
@@ -51,6 +54,7 @@ namespace PhotoGallery.Controllers
         {
             if (ModelState.IsValid)
             {
+                album.UserId = User.Identity.GetUserId();
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
