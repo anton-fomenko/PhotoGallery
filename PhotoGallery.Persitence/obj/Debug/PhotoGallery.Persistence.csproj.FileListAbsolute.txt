@@ -1,0 +1,11 @@
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\EntityFramework.dll
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\EntityFramework.SqlServer.dll
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\PhotoGallery.Domain.dll
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\PhotoGallery.Domain.pdb
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\EntityFramework.xml
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\EntityFramework.SqlServer.xml
+C:\PhotoGallery\PhotoGallery.Persitence\obj\Debug\PhotoGallery.Persistence.csprojResolveAssemblyReference.cache
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\PhotoGallery.Persistence.dll
+C:\PhotoGallery\PhotoGallery.Persitence\bin\Debug\PhotoGallery.Persistence.pdb
+C:\PhotoGallery\PhotoGallery.Persitence\obj\Debug\PhotoGallery.Persistence.dll
+C:\PhotoGallery\PhotoGallery.Persitence\obj\Debug\PhotoGallery.Persistence.pdb
