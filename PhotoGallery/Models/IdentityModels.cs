@@ -18,6 +18,7 @@ namespace PhotoGallery.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Albums { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

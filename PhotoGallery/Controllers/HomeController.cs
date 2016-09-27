@@ -15,6 +15,14 @@ namespace PhotoGallery.Controllers
     {
         private GalleryContext _db = new GalleryContext();
 
+        [HttpGet]
+        public ActionResult CreateAlbum()
+        {
+            Album album = new Album();
+
+            return View(album);
+        }
+
         public ActionResult Index()
         {
             return View();

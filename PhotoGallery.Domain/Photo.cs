@@ -16,5 +16,7 @@ namespace PhotoGallery.Domain
         public byte[] ThumbPhoto { get; set; }
 
         public byte[] LargePhoto { get; set; }
+
+        public Album Album { get; set; }
     }
 }
