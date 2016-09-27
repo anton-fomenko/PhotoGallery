@@ -281,6 +281,14 @@ paket-files/
 __pycache__/
 *.pyc
 
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+
+
 # Cake - Uncomment if you are using it
 # tools/
 Contact GitHub API Training Shop Blog About

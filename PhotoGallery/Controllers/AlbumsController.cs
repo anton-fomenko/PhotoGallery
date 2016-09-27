@@ -18,26 +18,19 @@ namespace PhotoGallery.Controllers
     [Authorize]
     public class AlbumsController : Controller
     {
-        public AlbumsController()
-        {
-
-        }
+        private readonly GalleryContext db = new GalleryContext();
+        private readonly IAlbumService _albumService;
+        public AlbumsController() {}
         public AlbumsController(IAlbumService albumService)
         {
             _albumService = albumService;
         }
 
-        private IAlbumService _albumService;
-
-        private GalleryContext db = new GalleryContext();
-
         // GET: Albums
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            //_albumService.GetAlbumsOfTheUser(userId);
-
-            List<Album> listOfAlbums = db.Albums.Where(x => x.UserId == userId).ToList();
+            List<Album> listOfAlbums = _albumService.GetAlbumsOfTheUser(userId); 
             List<AlbumViewModel> listOfAlbumsViewModels = Mapper.Map<List<AlbumViewModel>>(listOfAlbums);
 
             return View(listOfAlbumsViewModels);
