@@ -71,3 +71,7 @@ C:\PhotoGallery\PhotoGallery\obj\Debug\PhotoGallery.dll
 C:\PhotoGallery\PhotoGallery\obj\Debug\PhotoGallery.pdb
 C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.Persistence.dll
 C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.Persistence.pdb
+C:\PhotoGallery\PhotoGallery\bin\AutoMapper.dll
+C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.Services.dll
+C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.Services.pdb
+C:\PhotoGallery\PhotoGallery\bin\AutoMapper.xml

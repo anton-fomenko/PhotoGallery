@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -178,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\FreeUser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -273,6 +278,10 @@
     <ProjectReference Include="..\PhotoGallery.Persitence\PhotoGallery.Persistence.csproj">
       <Project>{ec70e20c-f99b-4663-a2a9-b29f3a7bcf2e}</Project>
       <Name>PhotoGallery.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoGallery.Services\PhotoGallery.Services.csproj">
+      <Project>{AEB962C8-81DF-425B-AD82-8E16D7B5F7E1}</Project>
+      <Name>PhotoGallery.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -6,22 +6,41 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
+using PhotoGallery.Models;
 using PhotoGallery.Persistence;
+using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Controllers
 {
     [Authorize]
     public class AlbumsController : Controller
     {
+        public AlbumsController()
+        {
+
+        }
+        public AlbumsController(IAlbumService albumService)
+        {
+            _albumService = albumService;
+        }
+
+        private IAlbumService _albumService;
+
         private GalleryContext db = new GalleryContext();
 
         // GET: Albums
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.Albums.Where(x => x.UserId == userId).ToList());
+            //_albumService.GetAlbumsOfTheUser(userId);
+
+            List<Album> listOfAlbums = db.Albums.Where(x => x.UserId == userId).ToList();
+            List<AlbumViewModel> listOfAlbumsViewModels = Mapper.Map<List<AlbumViewModel>>(listOfAlbums);
+
+            return View(listOfAlbumsViewModels);
         }
 
         // GET: Albums/Details/5
