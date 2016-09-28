@@ -2,3 +2,4 @@ C:\PhotoGallery\PhotoGallery.Domain\bin\Debug\PhotoGallery.Domain.dll
 C:\PhotoGallery\PhotoGallery.Domain\bin\Debug\PhotoGallery.Domain.pdb
 C:\PhotoGallery\PhotoGallery.Domain\obj\Debug\PhotoGallery.Domain.dll
 C:\PhotoGallery\PhotoGallery.Domain\obj\Debug\PhotoGallery.Domain.pdb
+C:\PhotoGallery\PhotoGallery.Domain\obj\Debug\PhotoGallery.Domain.csprojResolveAssemblyReference.cache

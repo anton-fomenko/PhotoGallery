@@ -82,3 +82,5 @@ C:\PhotoGallery\PhotoGallery\bin\WebActivatorEx.dll
 C:\PhotoGallery\PhotoGallery\bin\Ninject.xml
 C:\PhotoGallery\PhotoGallery\bin\Ninject.Web.Common.xml
 C:\PhotoGallery\PhotoGallery\bin\Ninject.Web.Mvc.xml
+C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.DependencyResolver.dll
+C:\PhotoGallery\PhotoGallery\bin\PhotoGallery.DependencyResolver.pdb

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Ninject.Modules;
+using PhotoGallery.DependencyResolver;
 using PhotoGallery.Services.Interfaces;
 using PhotoGallery.Services.Services;
 
@@ -64,7 +67,7 @@ namespace PhotoGallery.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IAlbumService>().To<AlbumService>();
+            kernel.Load(new DependencyResolverModule());
         }        
     }
 }

@@ -288,6 +288,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhotoGallery.DependencyResolver\PhotoGallery.DependencyResolver.csproj">
+      <Project>{11A49D94-FF08-4D63-82F9-549A0FBB4FDF}</Project>
+      <Name>PhotoGallery.DependencyResolver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoGallery.Domain\PhotoGallery.Domain.csproj">
       <Project>{6DCED13E-9496-4D3B-83A1-C06BF2C24FFE}</Project>
       <Name>PhotoGallery.Domain</Name>

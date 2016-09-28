@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using PhotoGallery.Domain;
+using PhotoGallery.Persistence.Interfaces;
 
 namespace PhotoGallery.Persistence
 {
