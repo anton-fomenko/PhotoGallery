@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PhotoGallery.Domain
@@ -17,6 +18,7 @@ namespace PhotoGallery.Domain
 
         public byte[] LargePhoto { get; set; }
 
-        public Album Album { get; set; }
+        public virtual List<Album> Photos { get; set; }
+        public string UserId { get; set; }
     }
 }

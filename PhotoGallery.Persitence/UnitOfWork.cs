@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +19,9 @@ namespace PhotoGallery.Persistence
             private set;
         }
 
-        public UnitOfWork(GalleryContext context)
+        public UnitOfWork()
         {
-            _context = context;
-            _context.Database.Connection.Open();
+            _context = new GalleryContext();
             Albums = new AlbumRepository(_context);
         }
 

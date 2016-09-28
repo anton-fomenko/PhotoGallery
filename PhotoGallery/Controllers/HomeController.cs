@@ -68,7 +68,7 @@ namespace PhotoGallery.Controllers
             return View(photo);
         }
 
-        public Size NewImageSize(Size imageSize, Size newSize)
+        private Size NewImageSize(Size imageSize, Size newSize)
         {
             Size finalSize;
             double tempval;
@@ -87,18 +87,7 @@ namespace PhotoGallery.Controllers
             return finalSize;
         }
 
-        private void SaveToFolder(Image img, string fileName, string extension, Size newSize, string pathToSave)
-        {
-            // Get new resolution
-            Size imgSize = NewImageSize(img.Size, newSize);
-
-            using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-            {
-                ImageToByteArray(img);
-            }
-        }
-
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        private byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);

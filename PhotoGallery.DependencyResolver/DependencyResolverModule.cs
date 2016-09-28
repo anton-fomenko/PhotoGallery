@@ -18,7 +18,6 @@ namespace PhotoGallery.DependencyResolver
         {
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IAlbumService>().To<AlbumService>();
-            Bind<DbContext>().To<GalleryContext>();
         }
     }
 }
