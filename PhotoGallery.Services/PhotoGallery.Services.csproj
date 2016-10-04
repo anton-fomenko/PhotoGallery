@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAlbumService.cs" />
+    <Compile Include="Interfaces\IPhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlbumService.cs" />
+    <Compile Include="Services\PhotoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -13,11 +13,9 @@ namespace PhotoGallery.Persistence
     {
         private readonly GalleryContext _context;
 
-        public IAlbumRepository Albums
-        {
-            get;
-            private set;
-        }
+        public IAlbumRepository Albums { get; }
+
+        public IPhotoRepository Photos { get; }
 
         public UnitOfWork()
         {

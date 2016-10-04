@@ -6,7 +6,7 @@ using PhotoGallery.Models;
 
 namespace PhotoGallery.App_Start
 {
-    public class PhotoGalleryIdentityDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class PhotoGalleryIdentityDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
