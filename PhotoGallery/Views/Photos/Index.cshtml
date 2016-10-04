@@ -35,6 +35,11 @@
             @Html.DisplayFor(modelItem => item.CreatedOn)
         </td>
         <td>
+            <a href='@Url.Action("show", "image", new {id = item.PhotoId})'
+               title="@item.Description">
+                <img src='@Url.Action("show", "image", new {id = item.PhotoId})'
+                     alt="@item.Description" />
+            </a>
             @Html.DisplayFor(modelItem => item.ThumbPhoto)
         </td>
         <td>

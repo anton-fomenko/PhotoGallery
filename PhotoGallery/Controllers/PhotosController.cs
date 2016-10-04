@@ -15,6 +15,7 @@ using PhotoGallery.Persistence;
 
 namespace PhotoGallery.Controllers
 {
+    [Authorize]
     public class PhotosController : Controller
     {
         private GalleryContext db = new GalleryContext();
@@ -24,6 +25,13 @@ namespace PhotoGallery.Controllers
         {
             string userId = User.Identity.GetUserId();
             return View(db.Photos.Where(x => x.UserId == userId).ToList());
+        }
+
+        public ActionResult Show(int id)
+        {
+            byte[] imageData = db.Photos.Single(x => x.PhotoId == id).LargePhoto;
+
+            return File(imageData, "image/jpg");
         }
 
         // GET: Photos/Details/5
@@ -62,6 +70,7 @@ namespace PhotoGallery.Controllers
             if (photo.File.ContentLength != 0)
             {
                 model.Description = photo.Description;
+                model.UserId = User.Identity.GetUserId();
                 var fileName = Guid.NewGuid().ToString();
                 var extension = System.IO.Path.GetExtension(photo.File.FileName).ToLower();
 
