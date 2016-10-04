@@ -2,7 +2,7 @@
 
 namespace PhotoGallery.Persistence
 {
-    public class PhotoGalleryDbInitializer : DropCreateDatabaseAlways<GalleryContext>
+    public class PhotoGalleryDbInitializer : DropCreateDatabaseIfModelChanges<GalleryContext>
     {
 
     }

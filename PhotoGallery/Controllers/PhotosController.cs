@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
+using PhotoGallery.Models;
 using PhotoGallery.Persistence;
 
 namespace PhotoGallery.Controllers
@@ -22,7 +23,7 @@ namespace PhotoGallery.Controllers
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.Photos.Where(x => x.UserId == userId).ToList()); 
+            return View(db.Photos.Where(x => x.UserId == userId).ToList());
         }
 
         // GET: Photos/Details/5
@@ -46,22 +47,54 @@ namespace PhotoGallery.Controllers
             return View();
         }
 
-        // POST: Photos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PhotoId,Description,CreatedOn,ThumbPhoto,LargePhoto")] Photo photo)
+        public ActionResult Create(CreatePhotoViewModel photo)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(photo);
+            if (photo.File == null)
             {
-                db.Photos.Add(photo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.error = "Please choose a file";
+                return View(photo);
             }
 
-            return View(photo);
+            var model = new Photo();
+            if (photo.File.ContentLength != 0)
+            {
+                model.Description = photo.Description;
+                var fileName = Guid.NewGuid().ToString();
+                var extension = System.IO.Path.GetExtension(photo.File.FileName).ToLower();
+
+                using (var img = System.Drawing.Image.FromStream(photo.File.InputStream))
+                {
+                    // Save thumbnail size image, 100 x 100
+                    // Get new resolution
+                    Size imgSize = NewImageSize(img.Size, new Size(100, 100));
+
+                    using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
+                    {
+                        model.ThumbPhoto = ImageToByteArray(newImg);
+                    }
+
+                    // Save large size image, 800 x 800
+                    // Get new resolution
+                    Size bigOmgSize = NewImageSize(img.Size, new Size(800, 800));
+
+                    using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
+                    {
+                        model.LargePhoto = ImageToByteArray(newImg);
+                    }
+                }
+
+                // Save record to database
+                model.CreatedOn = DateTime.Now;
+                db.Photos.Add(model);
+                db.SaveChanges();
+            }
+
+            return RedirectPermanent("/home");
         }
+
 
         // GET: Photos/Edit/5
         public ActionResult Edit(int? id)
@@ -129,80 +162,30 @@ namespace PhotoGallery.Controllers
             base.Dispose(disposing);
         }
 
-        //[HttpPost]
-        //public ActionResult Create(Photo photo, IEnumerable<HttpPostedFileBase> files)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(photo);
-        //    if (!files.Any() || files.FirstOrDefault() == null)
-        //    {
-        //        ViewBag.error = "Please choose a file";
-        //        return View(photo);
-        //    }
+        private Size NewImageSize(Size imageSize, Size newSize)
+        {
+            Size finalSize;
+            double tempval;
+            if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
+            {
+                if (imageSize.Height > imageSize.Width)
+                    tempval = newSize.Height / (imageSize.Height * 1.0);
+                else
+                    tempval = newSize.Width / (imageSize.Width * 1.0);
 
-        //    var model = new Photo();
-        //    foreach (var file in files)
-        //    {
-        //        if (file.ContentLength == 0) continue;
+                finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
+            }
+            else
+                finalSize = imageSize; // image is already small size
 
-        //        model.Description = photo.Description;
-        //        var fileName = Guid.NewGuid().ToString();
-        //        var extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+            return finalSize;
+        }
 
-        //        using (var img = System.Drawing.Image.FromStream(file.InputStream))
-        //        {
-        //            // Save thumbnail size image, 100 x 100
-        //            // Get new resolution
-        //            Size imgSize = NewImageSize(img.Size, new Size(100, 100));
-
-        //            using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-        //            {
-        //                model.ThumbPhoto = ImageToByteArray(newImg);
-        //            }
-
-        //            // Save large size image, 800 x 800
-        //            // Get new resolution
-        //            Size bigOmgSize = NewImageSize(img.Size, new Size(800, 800));
-
-        //            using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-        //            {
-        //                model.LargePhoto = ImageToByteArray(newImg);
-        //            }
-        //        }
-
-        //        // Save record to database
-        //        model.CreatedOn = DateTime.Now;
-        //        db.Photos.Add(model);
-        //        db.SaveChanges();
-        //    }
-
-        //    return RedirectPermanent("/home");
-        //}
-
-        //private Size NewImageSize(Size imageSize, Size newSize)
-        //{
-        //    Size finalSize;
-        //    double tempval;
-        //    if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
-        //    {
-        //        if (imageSize.Height > imageSize.Width)
-        //            tempval = newSize.Height / (imageSize.Height * 1.0);
-        //        else
-        //            tempval = newSize.Width / (imageSize.Width * 1.0);
-
-        //        finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
-        //    }
-        //    else
-        //        finalSize = imageSize; // image is already small size
-
-        //    return finalSize;
-        //}
-
-        //private byte[] ImageToByteArray(System.Drawing.Image imageIn)
-        //{
-        //    MemoryStream ms = new MemoryStream();
-        //    imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-        //    return ms.ToArray();
-        //}
+        private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
     }
 }
