@@ -92,7 +92,7 @@ namespace PhotoGallery.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectPermanent("/home");
+            return RedirectToAction("Index");
         }
 
 
