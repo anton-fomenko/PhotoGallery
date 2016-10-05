@@ -121,7 +121,7 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
+            Photo photo = _photoService.GetPhotoById(id.Value);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -138,8 +138,7 @@ namespace PhotoGallery.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(photo).State = EntityState.Modified;
-                db.SaveChanges();
+                _photoService.Modify(photo);
                 return RedirectToAction("Index");
             }
             return View(photo);

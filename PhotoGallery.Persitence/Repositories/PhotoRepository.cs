@@ -27,5 +27,10 @@ namespace PhotoGallery.Persistence.Repositories
         {
             return _context.Photos.Single(x => x.PhotoId == photoId).LargePhoto;
         }
+
+        public void Modify(Photo photo)
+        {
+            _context.Entry(photo).State = EntityState.Modified;
+        }
     }
 }

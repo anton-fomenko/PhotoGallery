@@ -13,5 +13,6 @@ namespace PhotoGallery.Services.Interfaces
         byte[] GetLargePhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);
         void AddPhoto(Photo model);
+        void Modify(Photo photo);
     }
 }

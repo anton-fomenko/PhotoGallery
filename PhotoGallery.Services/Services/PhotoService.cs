@@ -37,5 +37,11 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Photos.Add(model);
             _unitOfWork.Complete();
         }
+
+        public void Modify(Photo photo)
+        {
+            _unitOfWork.Photos.Modify(photo);
+            _unitOfWork.Complete();
+        }
     }
 }
