@@ -27,10 +27,5 @@ namespace PhotoGallery.Persistence.Repositories
         {
             return _context.Photos.Single(x => x.PhotoId == photoId).LargePhoto;
         }
-
-        public Photo GetPhotoById(int id)
-        {
-            return _context.Photos.Find(id);
-        }
     }
 }

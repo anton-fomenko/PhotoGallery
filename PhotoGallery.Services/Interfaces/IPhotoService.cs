@@ -12,5 +12,6 @@ namespace PhotoGallery.Services.Interfaces
         List<Photo> GetPhotosOfTheUser(string userId);
         byte[] GetLargePhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);
+        void AddPhoto(Photo model);
     }
 }

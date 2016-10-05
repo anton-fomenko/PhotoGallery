@@ -106,8 +106,8 @@ namespace PhotoGallery.Controllers
 
                 // Save record to database
                 model.CreatedOn = DateTime.Now;
-                db.Photos.Add(model);
-                db.SaveChanges();
+
+                _photoService.AddPhoto(model);
             }
 
             return RedirectToAction("Index");

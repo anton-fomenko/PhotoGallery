@@ -29,7 +29,13 @@ namespace PhotoGallery.Services.Services
 
         public Photo GetPhotoById(int id)
         {
-            return _unitOfWork.Photos.GetPhotoById(id);
+            return _unitOfWork.Photos.Get(id);
+        }
+
+        public void AddPhoto(Photo model)
+        {
+            _unitOfWork.Photos.Add(model);
+            _unitOfWork.Complete();
         }
     }
 }

@@ -7,7 +7,7 @@ using PhotoGallery.Domain;
 
 namespace PhotoGallery.Persistence.Interfaces
 {
-    public interface IAlbumRepository
+    public interface IAlbumRepository : IRepository<Album>
     {
         IEnumerable<Album> GetAlbumsByUserId(string userId);
     }

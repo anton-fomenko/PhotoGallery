@@ -7,10 +7,9 @@ using PhotoGallery.Domain;
 
 namespace PhotoGallery.Persistence.Interfaces
 {
-    public interface IPhotoRepository
+    public interface IPhotoRepository : IRepository<Photo>
     {
         IEnumerable<Photo> GetPhotosByUserId(string userId);
         byte[] GetLargePhotoById(int photoId);
-        Photo GetPhotoById(int id);
     }
 }
