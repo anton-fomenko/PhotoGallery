@@ -173,9 +173,9 @@ namespace PhotoGallery.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                // Release managed resources
+                _photoService.Dispose();
             }
-            base.Dispose(disposing);
         }
 
         private Size NewImageSize(Size imageSize, Size newSize)

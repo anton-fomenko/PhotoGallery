@@ -51,5 +51,10 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Photos.Remove(photo);
             _unitOfWork.Complete();
         }
+
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
+        }
     }
 }

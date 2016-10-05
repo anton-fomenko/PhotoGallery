@@ -7,7 +7,7 @@ using PhotoGallery.Domain;
 
 namespace PhotoGallery.Services.Interfaces
 {
-    public interface IPhotoService
+    public interface IPhotoService : IDisposable
     {
         List<Photo> GetPhotosOfTheUser(string userId);
         byte[] GetLargePhotoInBytesById(int photoId);
