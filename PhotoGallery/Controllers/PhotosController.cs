@@ -74,44 +74,16 @@ namespace PhotoGallery.Controllers
                 return View(photo);
             }
 
-            var model = new Photo();
-            if (photo.File.ContentLength != 0)
+            var model = new Photo
             {
-                model.Description = photo.Description;
-                model.UserId = User.Identity.GetUserId();
-                var fileName = Guid.NewGuid().ToString();
-                var extension = System.IO.Path.GetExtension(photo.File.FileName).ToLower();
+                Description = photo.Description,
+                UserId = User.Identity.GetUserId()
+            };
 
-                using (var img = System.Drawing.Image.FromStream(photo.File.InputStream))
-                {
-                    // Save thumbnail size image, 100 x 100
-                    // Get new resolution
-                    Size imgSize = NewImageSize(img.Size, new Size(100, 100));
-
-                    using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-                    {
-                        model.ThumbPhoto = ImageToByteArray(newImg);
-                    }
-
-                    // Save large size image, 800 x 800
-                    // Get new resolution
-                    Size bigOmgSize = NewImageSize(img.Size, new Size(800, 800));
-
-                    using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-                    {
-                        model.LargePhoto = ImageToByteArray(newImg);
-                    }
-                }
-
-                // Save record to database
-                model.CreatedOn = DateTime.Now;
-
-                _photoService.AddPhoto(model);
-            }
+            _photoService.AddPhoto(model, photo.File.InputStream, photo.File.FileName);
 
             return RedirectToAction("Index");
         }
-
 
         // GET: Photos/Edit/5
         public ActionResult Edit(int? id)
@@ -175,32 +147,6 @@ namespace PhotoGallery.Controllers
                 // Release managed resources
                 _photoService.Dispose();
             }
-        }
-
-        private Size NewImageSize(Size imageSize, Size newSize)
-        {
-            Size finalSize;
-            double tempval;
-            if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
-            {
-                if (imageSize.Height > imageSize.Width)
-                    tempval = newSize.Height / (imageSize.Height * 1.0);
-                else
-                    tempval = newSize.Width / (imageSize.Width * 1.0);
-
-                finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
-            }
-            else
-                finalSize = imageSize; // image is already small size
-
-            return finalSize;
-        }
-
-        private byte[] ImageToByteArray(System.Drawing.Image imageIn)
-        {
-            MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-            return ms.ToArray();
         }
     }
 }

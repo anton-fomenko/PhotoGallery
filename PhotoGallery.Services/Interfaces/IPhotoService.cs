@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,8 @@ namespace PhotoGallery.Services.Interfaces
         List<Photo> GetPhotosOfTheUser(string userId);
         byte[] GetLargePhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);
-        void AddPhoto(Photo model);
         void Modify(Photo photo);
         void Remove(Photo photo);
+        void AddPhoto(Photo model, Stream inputStream, string fileName);
     }
 }
