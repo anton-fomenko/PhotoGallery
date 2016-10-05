@@ -40,7 +40,15 @@ namespace PhotoGallery.Services.Services
 
         public void Modify(Photo photo)
         {
-            _unitOfWork.Photos.Modify(photo);
+            Photo originalPhoto = _unitOfWork.Photos.Get(photo.PhotoId);
+            originalPhoto.Description = photo.Description;
+            _unitOfWork.Photos.Modify(originalPhoto);
+            _unitOfWork.Complete();
+        }
+
+        public void Remove(Photo photo)
+        {
+            _unitOfWork.Photos.Remove(photo);
             _unitOfWork.Complete();
         }
     }

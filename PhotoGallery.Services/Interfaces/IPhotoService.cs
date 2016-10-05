@@ -14,5 +14,6 @@ namespace PhotoGallery.Services.Interfaces
         Photo GetPhotoById(int id);
         void AddPhoto(Photo model);
         void Modify(Photo photo);
+        void Remove(Photo photo);
     }
 }

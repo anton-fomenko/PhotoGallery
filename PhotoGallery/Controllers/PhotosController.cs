@@ -151,7 +151,7 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
+            Photo photo = _photoService.GetPhotoById(id.Value);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -164,9 +164,8 @@ namespace PhotoGallery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo = db.Photos.Find(id);
-            db.Photos.Remove(photo);
-            db.SaveChanges();
+            Photo photo = _photoService.GetPhotoById(id);
+            _photoService.Remove(photo);
             return RedirectToAction("Index");
         }
 

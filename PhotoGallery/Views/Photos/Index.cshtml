@@ -20,9 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ThumbPhoto)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LargePhoto)
-        </th>
         <th></th>
     </tr>
 
@@ -40,10 +37,6 @@
                 <img src='@Url.Action("show", "image", new {id = item.PhotoId})'
                      alt="@item.Description" />
             </a>
-            @Html.DisplayFor(modelItem => item.ThumbPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LargePhoto)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
