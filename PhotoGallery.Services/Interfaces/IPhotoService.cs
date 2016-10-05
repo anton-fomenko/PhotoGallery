@@ -10,6 +10,7 @@ namespace PhotoGallery.Services.Interfaces
     public interface IPhotoService
     {
         List<Photo> GetPhotosOfTheUser(string userId);
-        byte[] GetLargePhotoById(int photoId);
+        byte[] GetLargePhotoInBytesById(int photoId);
+        Photo GetPhotoById(int id);
     }
 }

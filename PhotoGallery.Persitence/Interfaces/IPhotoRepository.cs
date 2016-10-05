@@ -11,5 +11,6 @@ namespace PhotoGallery.Persistence.Interfaces
     {
         IEnumerable<Photo> GetPhotosByUserId(string userId);
         byte[] GetLargePhotoById(int photoId);
+        Photo GetPhotoById(int id);
     }
 }

@@ -37,7 +37,7 @@ namespace PhotoGallery.Controllers
 
         public ActionResult Show(int id)
         {
-            byte[] imageData = _photoService.GetLargePhotoById(id);
+            byte[] imageData = _photoService.GetLargePhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 
@@ -48,7 +48,9 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
+
+            Photo photo = _photoService.GetPhotoById(id.Value);
+
             if (photo == null)
             {
                 return HttpNotFound();
