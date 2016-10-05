@@ -110,7 +110,9 @@ namespace PhotoGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PhotoId,Description,CreatedOn,ThumbPhoto,LargePhoto")] Photo photo)
+        public ActionResult Edit(
+            [Bind(Include = "PhotoId,Description,Name,Location,CameraModel,FocalLengthOfLens,Aperture,ShutterSpeed,Iso,Flash")]
+            Photo photo)
         {
             if (ModelState.IsValid)
             {

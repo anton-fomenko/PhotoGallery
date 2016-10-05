@@ -43,7 +43,18 @@ namespace PhotoGallery.Services.Services
         public void Modify(Photo photo)
         {
             Photo originalPhoto = _unitOfWork.Photos.Get(photo.PhotoId);
+
             originalPhoto.Description = photo.Description;
+            originalPhoto.Name = photo.Name;
+            originalPhoto.Aperture = photo.Aperture;
+            originalPhoto.CameraModel = photo.CameraModel;
+            originalPhoto.Flash = photo.Flash;
+            originalPhoto.FocalLengthOfLens = photo.FocalLengthOfLens;
+            originalPhoto.Iso = photo.Iso;
+            originalPhoto.ShutterSpeed = photo.ShutterSpeed;
+            originalPhoto.Location = photo.Location;
+            originalPhoto.CreatedOn = photo.CreatedOn;
+
             _unitOfWork.Photos.Modify(originalPhoto);
             _unitOfWork.Complete();
         }
