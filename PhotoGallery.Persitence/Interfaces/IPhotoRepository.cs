@@ -10,5 +10,6 @@ namespace PhotoGallery.Persistence.Interfaces
     public interface IPhotoRepository
     {
         IEnumerable<Photo> GetPhotosByUserId(string userId);
+        byte[] GetLargePhotoById(int photoId);
     }
 }

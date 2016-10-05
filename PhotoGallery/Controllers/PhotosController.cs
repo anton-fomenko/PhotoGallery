@@ -37,8 +37,7 @@ namespace PhotoGallery.Controllers
 
         public ActionResult Show(int id)
         {
-            byte[] imageData = db.Photos.Single(x => x.PhotoId == id).LargePhoto;
-
+            byte[] imageData = _photoService.GetLargePhotoById(id);
             return File(imageData, "image/jpg");
         }
 

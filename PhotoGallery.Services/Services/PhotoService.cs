@@ -21,5 +21,10 @@ namespace PhotoGallery.Services.Services
         {
             return _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
         }
+
+        public byte[] GetLargePhotoById(int photoId)
+        {
+            return _unitOfWork.Photos.GetLargePhotoById(photoId);
+        }
     }
 }
