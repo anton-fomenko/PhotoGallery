@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace PhotoGallery.Persistence.Repositories
         public IEnumerable<Album> GetAlbumsByUserId(string userId)
         {
             return _context.Albums.Where(x => x.UserId == userId);
+        }
+
+        public void Modify(Album album)
+        {
+            _context.Entry(album).State = EntityState.Modified;
         }
     }
 }

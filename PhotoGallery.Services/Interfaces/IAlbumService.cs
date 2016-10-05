@@ -7,8 +7,12 @@ using PhotoGallery.Domain;
 
 namespace PhotoGallery.Services.Interfaces
 {
-    public interface IAlbumService
+    public interface IAlbumService : IDisposable
     {
         List<Album> GetAlbumsOfTheUser(string userId);
+        Album GetAlbum(int albumId);
+        void AddAlbum(Album album);
+        void Modify(Album album);
+        void Remove(int albumId);
     }
 }

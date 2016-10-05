@@ -153,6 +153,7 @@ namespace PhotoGallery.Controllers
                 // Release managed resources
                 _photoService.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }

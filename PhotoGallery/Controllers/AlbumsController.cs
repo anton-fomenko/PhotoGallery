@@ -18,7 +18,6 @@ namespace PhotoGallery.Controllers
     [Authorize]
     public class AlbumsController : Controller
     {
-        private readonly GalleryContext db = new GalleryContext();
         private readonly IAlbumService _albumService;
         public AlbumsController() {}
         public AlbumsController(IAlbumService albumService)
@@ -43,7 +42,9 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+
+            Album album =_albumService.GetAlbum(id.Value);
+
             if (album == null)
             {
                 return HttpNotFound();
@@ -67,8 +68,7 @@ namespace PhotoGallery.Controllers
             if (ModelState.IsValid)
             {
                 album.UserId = User.Identity.GetUserId();
-                db.Albums.Add(album);
-                db.SaveChanges();
+                _albumService.AddAlbum(album);
                 return RedirectToAction("Index");
             }
 
@@ -82,7 +82,7 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+            Album album = _albumService.GetAlbum(id.Value);
             if (album == null)
             {
                 return HttpNotFound();
@@ -99,8 +99,7 @@ namespace PhotoGallery.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(album).State = EntityState.Modified;
-                db.SaveChanges();
+                _albumService.Modify(album);
                 return RedirectToAction("Index");
             }
             return View(album);
@@ -113,7 +112,7 @@ namespace PhotoGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+            Album album = _albumService.GetAlbum(id.Value);
             if (album == null)
             {
                 return HttpNotFound();
@@ -126,9 +125,7 @@ namespace PhotoGallery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Album album = db.Albums.Find(id);
-            db.Albums.Remove(album);
-            db.SaveChanges();
+            _albumService.Remove(id);
             return RedirectToAction("Index");
         }
 
@@ -136,7 +133,8 @@ namespace PhotoGallery.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                // Release managed resources
+                _albumService.Dispose();
             }
             base.Dispose(disposing);
         }

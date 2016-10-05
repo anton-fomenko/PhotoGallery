@@ -10,5 +10,6 @@ namespace PhotoGallery.Persistence.Interfaces
     public interface IAlbumRepository : IRepository<Album>
     {
         IEnumerable<Album> GetAlbumsByUserId(string userId);
+        void Modify(Album originalAlbum);
     }
 }
