@@ -34,9 +34,15 @@ namespace PhotoGallery.Controllers
             return View(_photoService.GetPhotosOfTheUser(userId));
         }
 
-        public ActionResult Show(int id)
+        public ActionResult ShowLargePhoto(int id)
         {
             byte[] imageData = _photoService.GetLargePhotoInBytesById(id);
+            return File(imageData, "image/jpg");
+        }
+
+        public ActionResult ShowThumbPhoto(int id)
+        {
+            byte[] imageData = _photoService.GetThumbPhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 
@@ -80,7 +86,7 @@ namespace PhotoGallery.Controllers
                 UserId = User.Identity.GetUserId()
             };
 
-            _photoService.AddPhoto(model, photo.File.InputStream, photo.File.FileName);
+            _photoService.AddPhoto(model, photo.File.InputStream);
 
             return RedirectToAction("Index");
         }

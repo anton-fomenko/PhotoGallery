@@ -12,9 +12,10 @@ namespace PhotoGallery.Services.Interfaces
     {
         List<Photo> GetPhotosOfTheUser(string userId);
         byte[] GetLargePhotoInBytesById(int photoId);
+        byte[] GetThumbPhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);
         void Modify(Photo photo);
         void Remove(Photo photo);
-        void AddPhoto(Photo model, Stream inputStream, string fileName);
+        void AddPhoto(Photo model, Stream inputStream);
     }
 }

@@ -10,7 +10,6 @@ namespace PhotoGallery.Persistence.Interfaces
     public interface IPhotoRepository : IRepository<Photo>
     {
         IEnumerable<Photo> GetPhotosByUserId(string userId);
-        byte[] GetLargePhotoById(int photoId);
         void Modify(Photo photo);
     }
 }

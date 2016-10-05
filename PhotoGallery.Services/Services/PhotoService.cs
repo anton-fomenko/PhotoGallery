@@ -27,7 +27,12 @@ namespace PhotoGallery.Services.Services
 
         public byte[] GetLargePhotoInBytesById(int photoId)
         {
-            return _unitOfWork.Photos.GetLargePhotoById(photoId);
+            return _unitOfWork.Photos.Get(photoId).LargePhoto;
+        }
+
+        public byte[] GetThumbPhotoInBytesById(int photoId)
+        {
+            return _unitOfWork.Photos.Get(photoId).ThumbPhoto;
         }
 
         public Photo GetPhotoById(int id)
@@ -54,18 +59,15 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Dispose();
         }
 
-        public void AddPhoto(Photo model, Stream inputStream, string fileName)
+        public void AddPhoto(Photo model, Stream inputStream)
         {
-            var newFileName = Guid.NewGuid().ToString();
-            var extension = System.IO.Path.GetExtension(fileName).ToLower();
-
-            using (var img = System.Drawing.Image.FromStream(inputStream))
+            using (var img = Image.FromStream(inputStream))
             {
                 // Save thumbnail size image, 100 x 100
                 // Get new resolution
                 Size imgSize = NewImageSize(img.Size, new Size(100, 100));
 
-                using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
+                using (Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
                 {
                     model.ThumbPhoto = ImageToByteArray(newImg);
                 }
@@ -74,7 +76,7 @@ namespace PhotoGallery.Services.Services
                 // Get new resolution
                 Size bigOmgSize = NewImageSize(img.Size, new Size(800, 800));
 
-                using (System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
+                using (Image newImg = new Bitmap(img, bigOmgSize.Width, bigOmgSize.Height))
                 {
                     model.LargePhoto = ImageToByteArray(newImg);
                 }
@@ -106,7 +108,7 @@ namespace PhotoGallery.Services.Services
             return finalSize;
         }
 
-        private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        private byte[] ImageToByteArray(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
