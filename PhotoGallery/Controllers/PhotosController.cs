@@ -19,7 +19,6 @@ namespace PhotoGallery.Controllers
     [Authorize]
     public class PhotosController : Controller
     {
-        private GalleryContext db = new GalleryContext();
         private readonly IPhotoService _photoService;
 
         public PhotosController() { }
