@@ -303,10 +303,6 @@
       <Project>{6DCED13E-9496-4D3B-83A1-C06BF2C24FFE}</Project>
       <Name>PhotoGallery.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PhotoGallery.Persitence\PhotoGallery.Persistence.csproj">
-      <Project>{ec70e20c-f99b-4663-a2a9-b29f3a7bcf2e}</Project>
-      <Name>PhotoGallery.Persistence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PhotoGallery.Services\PhotoGallery.Services.csproj">
       <Project>{AEB962C8-81DF-425B-AD82-8E16D7B5F7E1}</Project>
       <Name>PhotoGallery.Services</Name>

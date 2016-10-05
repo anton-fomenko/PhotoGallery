@@ -10,7 +10,6 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
-using PhotoGallery.Persistence;
 using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Controllers
