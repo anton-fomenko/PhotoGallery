@@ -21,6 +21,7 @@ namespace PhotoGallery.Persistence
         {
             _context = new GalleryContext();
             Albums = new AlbumRepository(_context);
+            Photos = new PhotoRepository(_context);
         }
 
         public int Complete()

@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
 using PhotoGallery.Persistence;
+using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Controllers
 {
@@ -19,12 +20,19 @@ namespace PhotoGallery.Controllers
     public class PhotosController : Controller
     {
         private GalleryContext db = new GalleryContext();
+        private readonly IPhotoService _photoService;
+
+        public PhotosController() { }
+        public PhotosController(IPhotoService photoService)
+        {
+            _photoService = photoService;
+        }
 
         // GET: Photos
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.Photos.Where(x => x.UserId == userId).ToList());
+            return View(_photoService.GetPhotosOfTheUser(userId));
         }
 
         public ActionResult Show(int id)
