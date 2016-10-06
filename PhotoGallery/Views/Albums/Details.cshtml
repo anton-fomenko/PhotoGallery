@@ -1,4 +1,5 @@
-﻿@model PhotoGallery.Domain.Album
+﻿@using PhotoGallery.Domain
+@model PhotoGallery.Domain.Album
 
 @{
     ViewBag.Title = "Details";
@@ -8,7 +9,7 @@
 
 <div>
     <h4>Album</h4>
-    <hr />
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -28,6 +29,22 @@
 
     </dl>
 </div>
+
+<div class="row">
+    @foreach (Photo photo in Model.Photos)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <a href='@Url.Action("ShowLargePhoto", "Photos", new {id = photo.PhotoId})'
+               title="@photo.Description" class="thumbnail">
+                <p>@photo.Name</p>
+                <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = photo.PhotoId})'
+                     alt="@photo.Description" />
+            </a>
+        </div>
+    }
+</div>
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
