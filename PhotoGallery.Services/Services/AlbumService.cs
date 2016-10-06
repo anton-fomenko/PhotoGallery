@@ -47,6 +47,14 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Complete();
         }
 
+        public void AddPhotoToAlbum(int photoId, int albumId)
+        {
+            Album album = _unitOfWork.Albums.Get(albumId);
+            Photo photo = _unitOfWork.Photos.Get(photoId);
+            album.Photos.Add(photo);
+            _unitOfWork.Complete();
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();

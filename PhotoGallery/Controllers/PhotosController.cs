@@ -162,6 +162,13 @@ namespace PhotoGallery.Controllers
             return View(model);
         }
 
+        [HttpPost] 
+        public ActionResult AddToAlbum(int photoId, int albumId)
+        {
+            _albumService.AddPhotoToAlbum(photoId, albumId);
+            return RedirectToAction("AddToAlbum", photoId);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

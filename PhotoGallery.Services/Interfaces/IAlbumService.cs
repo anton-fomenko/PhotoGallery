@@ -14,5 +14,6 @@ namespace PhotoGallery.Services.Interfaces
         void AddAlbum(Album album);
         void Modify(Album album);
         void Remove(int albumId);
+        void AddPhotoToAlbum(int photoId, int albumId);
     }
 }
