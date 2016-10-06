@@ -15,5 +15,6 @@ namespace PhotoGallery.Services.Interfaces
         void Modify(Album album);
         void Remove(int albumId);
         void AddPhotoToAlbum(int photoId, int albumId);
+        Album GetAlbumByShortenedName(string albumName);
     }
 }

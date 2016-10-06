@@ -35,14 +35,14 @@ namespace PhotoGallery.Controllers
         }
 
         // GET: Albums/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string albumName)
         {
-            if (id == null)
+            if (albumName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Album album =_albumService.GetAlbum(id.Value);
+            Album album =_albumService.GetAlbumByShortenedName(albumName);
 
             if (album == null)
             {

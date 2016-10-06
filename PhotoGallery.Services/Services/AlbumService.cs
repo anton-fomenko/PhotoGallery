@@ -55,6 +55,12 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Complete();
         }
 
+        public Album GetAlbumByShortenedName(string albumName)
+        {
+            albumName = albumName.Replace("-", " ");
+            return _unitOfWork.Albums.SingleOrDefault(x => x.Name == albumName);
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();
