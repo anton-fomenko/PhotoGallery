@@ -199,6 +199,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddToItemViewModel.cs" />
     <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\CreatePhotoViewModel.cs" />
     <Compile Include="Models\FreeUser.cs" />
@@ -279,6 +280,7 @@
     <Content Include="Views\Photos\Details.cshtml" />
     <Content Include="Views\Photos\Edit.cshtml" />
     <Content Include="Views\Photos\Index.cshtml" />
+    <None Include="Views\Photos\AddToAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

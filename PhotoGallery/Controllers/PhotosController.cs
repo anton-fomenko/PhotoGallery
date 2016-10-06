@@ -19,11 +19,13 @@ namespace PhotoGallery.Controllers
     public class PhotosController : Controller
     {
         private readonly IPhotoService _photoService;
+        private readonly IAlbumService _albumService;
 
         public PhotosController() { }
-        public PhotosController(IPhotoService photoService)
+        public PhotosController(IPhotoService photoService, IAlbumService albumService)
         {
             _photoService = photoService;
+            _albumService = albumService;
         }
 
         // GET: Photos
@@ -147,12 +149,26 @@ namespace PhotoGallery.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddToAlbum(int id)
+        {
+            string userId = User.Identity.GetUserId();
+            Photo photo = _photoService.GetPhotoById(id);
+            List<Album> albums = _albumService.GetAlbumsOfTheUser(userId);
+            AddToItemViewModel model = new AddToItemViewModel() {Photo = photo, Albums = albums};
+            if (photo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 // Release managed resources
                 _photoService.Dispose();
+                _albumService.Dispose();
             }
             base.Dispose(disposing);
         }

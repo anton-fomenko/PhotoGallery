@@ -36,7 +36,7 @@ namespace PhotoGallery.Domain
 
         public byte[] LargePhoto { get; set; }
 
-        public virtual List<Album> Photos { get; set; }
+        public virtual List<Album> Albums { get; set; }
 
         public string UserId { get; set; }
     }

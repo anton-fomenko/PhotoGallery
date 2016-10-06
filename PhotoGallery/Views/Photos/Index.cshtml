@@ -35,11 +35,13 @@
             <a href='@Url.Action("ShowLargePhoto", "Photos", new {id = item.PhotoId})'
                title="@item.Description">
                 <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
-                     alt="@item.Description" />
+                     alt="@item.Description"
+                     class="img-thumbnail" />
             </a>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
+            @Html.ActionLink("Edit", "Edit", new {id = item.PhotoId}) |
+            @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId }) |
             @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
         </td>
