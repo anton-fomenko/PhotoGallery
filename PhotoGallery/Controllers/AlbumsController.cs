@@ -67,6 +67,16 @@ namespace PhotoGallery.Controllers
             if (ModelState.IsValid)
             {
                 album.UserId = User.Identity.GetUserId();
+
+                if (User.IsInRole("FreeUser"))
+                {
+                    if (_albumService.GetAlbumsOfTheUser(album.UserId).Count >= 5)
+                    {
+                        ModelState.AddModelError("Error", "You have exceeded your maximimim number of 5 albums.");
+                        return View();
+                    }
+                }
+
                 _albumService.AddAlbum(album);
                 return RedirectToAction("Index");
             }
