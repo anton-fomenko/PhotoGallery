@@ -35,9 +35,14 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.Get(photoId).ThumbPhoto.Bytes;
         }
 
-        public Photo GetPhotoById(int id)
+        public byte[] GetMediumPhotoInBytesById(int photoId)
         {
-            return _unitOfWork.Photos.Get(id);
+            return _unitOfWork.Photos.Get(photoId).MediumPhoto.Bytes;
+        }
+
+        public Photo GetPhotoById(int photoId)
+        {
+            return _unitOfWork.Photos.Get(photoId);
         }
 
         public void Modify(Photo photo)

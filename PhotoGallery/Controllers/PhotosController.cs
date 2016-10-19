@@ -47,8 +47,14 @@ namespace PhotoGallery.Controllers
             return File(imageData, "image/jpg");
         }
 
-        // GET: Photos/Details/5
-        public ActionResult Details(int? id)
+
+        public ActionResult ShowMediumPhoto(int id)
+        {
+            byte[] imageData = _photoService.GetMediumPhotoInBytesById(id);
+            return File(imageData, "image/jpg");
+        }
+
+        public ActionResult PhotoModalDialog(int? id)
         {
             if (id == null)
             {
@@ -61,7 +67,7 @@ namespace PhotoGallery.Controllers
             {
                 return HttpNotFound();
             }
-            return View(photo);
+            return PartialView(photo);
         }
 
         // GET: Photos/Create

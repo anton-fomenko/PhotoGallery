@@ -23,29 +23,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = item.PhotoId})'
-               title="@item.Description">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
                 <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
                      alt="@item.Description"
-                     class="img-thumbnail" />
-            </a>
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.PhotoId}) |
-            @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
-        </td>
-    </tr>
-}
+                     class="img-thumbnail"
+                     data-target="#photoModal"
+                     data-toggle="modal"
+                     data-id="@item.PhotoId"/>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
+                @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="modal" id="photoModal" tabindex="-1" data-url='@Url.Action("PhotoModalDialog")'>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Photos/index.js"></script>
+}
