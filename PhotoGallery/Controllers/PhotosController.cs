@@ -35,9 +35,9 @@ namespace PhotoGallery.Controllers
             return View(_photoService.GetPhotosOfTheUser(userId));
         }
 
-        public ActionResult ShowLargePhoto(int id)
+        public ActionResult ShowOriginalPhoto(int id)
         {
-            byte[] imageData = _photoService.GetLargePhotoInBytesById(id);
+            byte[] imageData = _photoService.GetOriginalPhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 

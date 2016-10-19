@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.CreatedOn)
         </td>
         <td>
-            <a href='@Url.Action("ShowLargePhoto", "Photos", new {id = item.PhotoId})'
+            <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = item.PhotoId})'
                title="@item.Description">
                 <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
                      alt="@item.Description"

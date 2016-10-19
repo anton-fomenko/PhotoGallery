@@ -25,14 +25,14 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
         }
 
-        public byte[] GetLargePhotoInBytesById(int photoId)
+        public byte[] GetOriginalPhotoInBytesById(int photoId)
         {
-            return _unitOfWork.Photos.Get(photoId).LargePhoto;
+            return _unitOfWork.Photos.Get(photoId).OriginalPhoto.Bytes;
         }
 
         public byte[] GetThumbPhotoInBytesById(int photoId)
         {
-            return _unitOfWork.Photos.Get(photoId).ThumbPhoto;
+            return _unitOfWork.Photos.Get(photoId).ThumbPhoto.Bytes;
         }
 
         public Photo GetPhotoById(int id)
@@ -75,21 +75,35 @@ namespace PhotoGallery.Services.Services
             using (var img = Image.FromStream(inputStream))
             {
                 // Save thumbnail size image, 100 x 100
-                // Get new resolution
                 Size imgSize = NewImageSize(img.Size, new Size(100, 100));
-
                 using (Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
                 {
-                    model.ThumbPhoto = ImageToByteArray(newImg);
+                    ThumbPhotoContent thumbPhoto = new ThumbPhotoContent()
+                    {
+                        Bytes = ImageToByteArray(newImg)
+                    };
+                    model.ThumbPhoto = thumbPhoto;
                 }
 
-                // Save large size image, 800 x 800
-                // Get new resolution
-                Size bigOmgSize = NewImageSize(img.Size, new Size(800, 800));
-
-                using (Image newImg = new Bitmap(img, bigOmgSize.Width, bigOmgSize.Height))
+                // Save original size image
+                using (Image newImg = new Bitmap(img, img.Size.Width, img.Size.Height))
                 {
-                    model.LargePhoto = ImageToByteArray(newImg);
+                    OriginalPhotoContent oritginalPhoto = new OriginalPhotoContent()
+                    {
+                        Bytes = ImageToByteArray(newImg)
+                    };
+                    model.OriginalPhoto = oritginalPhoto;
+                }
+
+                // Save medium size image, 500 x 500
+                Size mediumSize = NewImageSize(img.Size, new Size(800, 800));
+                using (Image newImg = new Bitmap(img, mediumSize.Width, mediumSize.Height))
+                {
+                    MediumPhotoContent mediumPhoto = new MediumPhotoContent()
+                    {
+                        Bytes = ImageToByteArray(newImg)
+                    };
+                    model.MediumPhoto = mediumPhoto;
                 }
 
                 // Save record to database
