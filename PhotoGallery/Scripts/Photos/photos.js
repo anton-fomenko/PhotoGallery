@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('.img-thumbnail').click(function () {
+    $('.thumbnail').click(function () {
         var photoId = $(this).data('id');
         var url = $('#photoModal').data('url') + '/' + photoId;
         

@@ -9,46 +9,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhotoBytesContent.ThumbPhoto)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
-                     alt="@item.Description"
-                     class="img-thumbnail"
-                     data-target="#photoModal"
-                     data-toggle="modal"
-                     data-id="@item.PhotoId"/>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
-                @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
-            </td>
-        </tr>
-    }
 
-</table>
+<div class="col-sm-12">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a class="thumbnail"
+                   data-target="#photoModal"
+                   data-toggle="modal"
+                   data-id="@item.PhotoId">
+                    <p>@item.Name</p>
+                    <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
+                         alt="@item.Description" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
 
 <div class="modal" id="photoModal" tabindex="-1" data-url='@Url.Action("PhotoModalDialog")'>
 </div>
