@@ -24,6 +24,7 @@
                     <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
                          alt="@item.Description"/>
                 </a>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId })
                 @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
             </div>
         }
