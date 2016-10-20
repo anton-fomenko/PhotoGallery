@@ -34,7 +34,7 @@
     @foreach (Photo photo in Model.Photos)
     {
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <a href='@Url.Action("ShowLargePhoto", "Photos", new {id = photo.PhotoId})'
+            <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = photo.PhotoId})'
                title="@photo.Description" class="thumbnail">
                 <p>@photo.Name</p>
                 <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = photo.PhotoId})'
