@@ -25,6 +25,14 @@ namespace PhotoGallery.Persistence.Repositories
 
         }
 
+        public void RemoveIncludingBytesContent(Photo photo)
+        {
+            Photo realPhotoEntity = _context.Photos.Single(x => x.PhotoId == photo.PhotoId);
+            PhotoBytesContent photoBytesContent = realPhotoEntity.PhotoBytesContent;
+            _context.PhotoBytesContents.Remove(photoBytesContent);
+            _context.Photos.Remove(realPhotoEntity);
+        }
+
         public void Modify(Photo photo)
         {
             _context.Entry(photo).State = EntityState.Modified;

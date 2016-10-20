@@ -76,7 +76,7 @@ namespace PhotoGallery.Services.Services
 
         public void Remove(Photo photo)
         {
-            _unitOfWork.Photos.Remove(photo);
+            _unitOfWork.Photos.RemoveIncludingBytesContent(photo);
             _unitOfWork.Complete();
         }
 
