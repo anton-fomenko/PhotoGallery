@@ -7,6 +7,7 @@ namespace PhotoGallery.Domain
     public class Photo
     {
         public int PhotoId { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -30,15 +31,10 @@ namespace PhotoGallery.Domain
         public int Iso { get; set; }
   
         public bool Flash { get; set; }
-
-        public virtual List<Album> Albums { get; set; }
-
         public string UserId { get; set; }
 
-        public virtual OriginalPhotoContent OriginalPhoto { get; set; }
+        public virtual List<Album> Albums { get; set; }
+        public virtual PhotoBytesContent PhotoBytesContent { get; set; }
 
-        public virtual MediumPhotoContent MediumPhoto { get; set; }
-
-        public virtual ThumbPhotoContent ThumbPhoto { get; set; }
     }
 }

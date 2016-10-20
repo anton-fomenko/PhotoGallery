@@ -11,5 +11,8 @@ namespace PhotoGallery.Persistence.Interfaces
     {
         IEnumerable<Photo> GetPhotosByUserId(string userId);
         void Modify(Photo photo);
+        byte[] GetOriginalPhoto(int photoId);
+        byte[] GetMediumPhoto(int photoId);
+        byte[] GetThumbPhoto(int photoId);
     }
 }
