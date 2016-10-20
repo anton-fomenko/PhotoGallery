@@ -9,36 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.MainPhoto.PhotoId})'
-                 alt="@item.Description"
-                 class="img-thumbnail"
-                 data-target="#photoModal"
-                 data-toggle="modal"
-                 data-id="@item.MainPhoto.PhotoId" />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { albumName = item.Name.Replace(" ", "-")}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="col-sm-12">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href='@Url.Action("Details", "Albums", new { albumName = item.Name.Replace(" ", "-")})' class="thumbnail">
+                    <p>Chrysanthemum</p>
+                    <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.MainPhoto.PhotoId})'
+                                          alt="@item.Description" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
 
-</table>
