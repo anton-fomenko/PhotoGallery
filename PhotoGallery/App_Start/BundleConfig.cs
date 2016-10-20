@@ -25,6 +25,9 @@ namespace PhotoGallery
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/photos").Include(
+                    "~/Scripts/Photos/photos.js"));
         }
     }
 }
