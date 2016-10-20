@@ -43,7 +43,7 @@
     <select name="photoId">
         @foreach (Photo photo in ViewBag.photos)
         {
-            <option value="@photo.PhotoId">@photo.Description</option>
+            <option value="@photo.PhotoId">@photo.Name</option>
         }
     </select>
 }
