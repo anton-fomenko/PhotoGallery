@@ -8,16 +8,16 @@
 
 @using (Html.BeginForm("Search", "Photos"))
 {
-    <input name="name" id="name" type="text"/>
+    <input name="name" id="name" type="text" />
 
     <input type="submit" class="btn btn-info"
-           value="SEARCH"/>
+           value="SEARCH" />
+
+    <a href='@Url.Action("AdvancedSearch", "Photos")'>
+        <input type="button" class="btn btn-info"
+                value="ADVANCED SEARCH" />
+    </a>
 }
-
-
-@*<a href="@Url.Action("Search", "Photos")" class="btn btn-info">
-    SEARCH
-</a>*@
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -31,7 +31,7 @@
                 <a href='@Url.Action("Details", "Albums", new { albumName = item.Name.Replace(" ", "-")})' class="thumbnail">
                     <p>@item.Name</p>
                     <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.MainPhoto.PhotoId})'
-                                          alt="@item.Description" />
+                         alt="@item.Description" />
                 </a>
             </div>
         }

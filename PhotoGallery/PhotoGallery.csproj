@@ -292,7 +292,7 @@
     <None Include="Views\Error\NotFound.cshtml" />
     <None Include="Views\Photos\AddToAlbum.cshtml" />
     <Content Include="Views\Photos\PhotoModalDialog.cshtml" />
-    <Content Include="Views\Photos\Search.cshtml" />
+    <Content Include="Views\Photos\AdvancedSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
