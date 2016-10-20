@@ -22,6 +22,7 @@ namespace PhotoGallery.Controllers
 
         public ActionResult Index()
         {
+            throw new Exception("test exception");
             return View();
         }
 
