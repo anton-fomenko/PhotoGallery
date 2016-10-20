@@ -6,11 +6,18 @@
 
 <h2>Index</h2>
 
-<input type="text"/>
+@using (Html.BeginForm("Search", "Photos"))
+{
+    <input name="name" id="name" type="text"/>
 
-<a href="@Url.Action("Search", "Photos")" class="btn btn-info">
+    <input type="submit" class="btn btn-info"
+           value="SEARCH"/>
+}
+
+
+@*<a href="@Url.Action("Search", "Photos")" class="btn btn-info">
     SEARCH
-</a>
+</a>*@
 
 <p>
     @Html.ActionLink("Create New", "Create")

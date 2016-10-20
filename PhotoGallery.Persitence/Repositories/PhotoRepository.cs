@@ -43,5 +43,27 @@ namespace PhotoGallery.Persistence.Repositories
         {
             return _context.Photos.Where(x => x.PhotoId == photoId).Select(x => x.PhotoBytesContent.ThumbPhoto).Single();
         }
+
+        public IEnumerable<Photo> Search(Photo photoModel, string userId)
+        {
+            IQueryable<Photo> query = _context.Photos;
+
+            if (photoModel.Name != null)
+                query = query.Where(s => s.Name == photoModel.Name);
+            if (photoModel.Description != null)
+                query = query.Where(s => s.Description == photoModel.Description);
+            if (photoModel.Iso != null)
+                query = query.Where(s => s.Iso == photoModel.Iso);
+            if (photoModel.Aperture != null)
+                query = query.Where(s => s.Aperture == photoModel.Aperture);
+            if (photoModel.CameraModel != null)
+                query = query.Where(s => s.CameraModel == photoModel.CameraModel);
+            if (photoModel.CreatedOn != null)
+                query = query.Where(s => s.CreatedOn == photoModel.CreatedOn);
+            if (photoModel.Flash != null)
+                query = query.Where(s => s.Flash == photoModel.Flash);
+
+            return query;
+        }
     }
 }

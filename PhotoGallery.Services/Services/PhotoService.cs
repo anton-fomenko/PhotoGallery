@@ -40,6 +40,11 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.GetMediumPhoto(photoId);
         }
 
+        public List<Photo> Search(Photo photoModel, string userId)
+        {
+            return _unitOfWork.Photos.Search(photoModel, userId).ToList();
+        }
+
         public Photo GetPhotoById(int photoId)
         {
             return _unitOfWork.Photos.Get(photoId);

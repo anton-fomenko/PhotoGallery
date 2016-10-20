@@ -10,6 +10,7 @@ namespace PhotoGallery.Models
 {
     public class CreatePhotoViewModel
     {
+        public string Name { get; set; }
         public string Description { get; set; }
         public HttpPostedFileBase File { get; set; }
     }

@@ -21,16 +21,16 @@ namespace PhotoGallery.Domain
         public string CameraModel { get; set; }
 
         [Display(Name = "Focal Length of the Lens")]
-        public int FocalLengthOfLens { get; set; }
+        public int? FocalLengthOfLens { get; set; }
 
-        public float Aperture { get; set; }
+        public float? Aperture { get; set; }
 
         [Display(Name = "Shutter Speed")]
         public string ShutterSpeed { get; set; }
 
-        public int Iso { get; set; }
+        public int? Iso { get; set; }
   
-        public bool Flash { get; set; }
+        public bool? Flash { get; set; }
         public string UserId { get; set; }
 
         public virtual List<Album> Albums { get; set; }

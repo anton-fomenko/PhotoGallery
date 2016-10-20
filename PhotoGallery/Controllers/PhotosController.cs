@@ -89,6 +89,7 @@ namespace PhotoGallery.Controllers
 
             var model = new Photo
             {
+                Name = photo.Name,
                 Description = photo.Description,
                 UserId = User.Identity.GetUserId()
             };
@@ -173,6 +174,13 @@ namespace PhotoGallery.Controllers
         {
             _albumService.AddPhotoToAlbum(photoId, albumId);
             return RedirectToAction("AddToAlbum", photoId);
+        }
+
+        public ActionResult Search(Photo searchModel)
+        {
+            string userId = User.Identity.GetUserId();
+            List<Photo> photos = _photoService.Search(searchModel, userId);
+            return View("Index", photos);
         }
 
         protected override void Dispose(bool disposing)

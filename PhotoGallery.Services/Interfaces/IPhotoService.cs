@@ -18,5 +18,6 @@ namespace PhotoGallery.Services.Interfaces
         void Remove(Photo photo);
         void AddPhoto(Photo model, Stream inputStream);
         byte[] GetMediumPhotoInBytesById(int id);
+        List<Photo> Search(Photo photo, string userId);
     }
 }
