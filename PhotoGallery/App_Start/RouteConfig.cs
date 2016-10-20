@@ -11,8 +11,8 @@ namespace PhotoGallery
 
             routes.MapRoute(
                 name: "AlbumDetails",
-                url: "Albums/{albumName}",
-                defaults: new { controller = "Albums", action = "Details"}
+                url: "Albums/Details/{albumName}",
+                defaults: new { controller = "Albums", action = "Details", albumName  = UrlParameter.Optional}
             );
 
             routes.MapRoute(
