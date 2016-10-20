@@ -1,4 +1,5 @@
-﻿@model PhotoGallery.Domain.Album
+﻿@using PhotoGallery.Domain
+@model PhotoGallery.Domain.Album
 
 @{
     ViewBag.Title = "Create";
@@ -6,10 +7,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     @Html.ValidationMessage("Error")
 
     <div class="form-horizontal">
@@ -38,6 +39,13 @@
             </div>
         </div>
     </div>
+
+    <select name="photoId">
+        @foreach (Photo photo in ViewBag.photos)
+        {
+            <option value="@photo.PhotoId">@photo.Description</option>
+        }
+    </select>
 }
 
 <div>

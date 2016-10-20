@@ -25,8 +25,10 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Albums.Get(albumId);
         }
 
-        public void AddAlbum(Album album)
+        public void AddAlbum(Album album, int photoId)
         {
+            Photo photo = _unitOfWork.Photos.Get(photoId);
+            album.MainPhoto = photo;
             _unitOfWork.Albums.Add(album);
             _unitOfWork.Complete();
         }

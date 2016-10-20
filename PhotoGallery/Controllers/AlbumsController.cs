@@ -18,10 +18,12 @@ namespace PhotoGallery.Controllers
     public class AlbumsController : Controller
     {
         private readonly IAlbumService _albumService;
+        private readonly IPhotoService _photoService;
         public AlbumsController() {}
-        public AlbumsController(IAlbumService albumService)
+        public AlbumsController(IAlbumService albumService, IPhotoService photoService)
         {
             _albumService = albumService;
+            _photoService = photoService;
         }
 
         // GET: Albums
@@ -29,9 +31,8 @@ namespace PhotoGallery.Controllers
         {
             string userId = User.Identity.GetUserId();
             List<Album> listOfAlbums = _albumService.GetAlbumsOfTheUser(userId); 
-            List<AlbumViewModel> listOfAlbumsViewModels = Mapper.Map<List<AlbumViewModel>>(listOfAlbums);
 
-            return View(listOfAlbumsViewModels);
+            return View(listOfAlbums);
         }
 
         // GET: Albums/Details/5
@@ -54,6 +55,9 @@ namespace PhotoGallery.Controllers
         // GET: Albums/Create
         public ActionResult Create()
         {
+            string userId = User.Identity.GetUserId();
+            List<Photo> photos = _photoService.GetPhotosOfTheUser(userId);
+            ViewBag.photos = photos;
             return View();
         }
 
@@ -62,7 +66,7 @@ namespace PhotoGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Album album)
+        public ActionResult Create([Bind(Include = "Id,Name,Description")] Album album, int photoId)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +81,7 @@ namespace PhotoGallery.Controllers
                     }
                 }
 
-                _albumService.AddAlbum(album);
+                _albumService.AddAlbum(album, photoId);
                 return RedirectToAction("Index");
             }
 

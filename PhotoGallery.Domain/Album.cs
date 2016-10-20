@@ -12,6 +12,7 @@ namespace PhotoGallery.Domain
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual List<Photo> Photos { get; set; }
+        public virtual Photo MainPhoto { get; set; }
         public string UserId { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace PhotoGallery.Services.Interfaces
     {
         List<Album> GetAlbumsOfTheUser(string userId);
         Album GetAlbum(int albumId);
-        void AddAlbum(Album album);
+        void AddAlbum(Album album, int photoId);
         void Modify(Album album);
         void Remove(int albumId);
         void AddPhotoToAlbum(int photoId, int albumId);
