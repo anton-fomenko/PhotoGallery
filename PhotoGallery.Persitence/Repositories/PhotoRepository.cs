@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,13 @@ namespace PhotoGallery.Persistence.Repositories
                 query = query.Where(s => s.Flash == photoModel.Flash);
 
             return query;
+        }
+
+        public IEnumerable<Photo> SearchByName(string photoName, string userId)
+        {
+            return _context.Database.SqlQuery<Photo>("exec spGetPhotosByName @Name, @UserId",
+                new SqlParameter("@Name", photoName),
+                new SqlParameter("@UserId", userId));
         }
     }
 }

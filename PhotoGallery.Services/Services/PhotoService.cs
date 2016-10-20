@@ -45,6 +45,11 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.Search(photoModel, userId).ToList();
         }
 
+        public List<Photo> SearchByName(string photoName, string userId)
+        {
+            return _unitOfWork.Photos.SearchByName(photoName, userId).ToList();
+        }
+
         public Photo GetPhotoById(int photoId)
         {
             return _unitOfWork.Photos.Get(photoId);

@@ -15,5 +15,6 @@ namespace PhotoGallery.Persistence.Interfaces
         byte[] GetMediumPhoto(int photoId);
         byte[] GetThumbPhoto(int photoId);
         IEnumerable<Photo> Search(Photo photoModel, string userId);
+        IEnumerable<Photo> SearchByName(string photoName, string userId);
     }
 }

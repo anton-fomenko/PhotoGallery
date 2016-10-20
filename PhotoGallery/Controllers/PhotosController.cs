@@ -175,6 +175,13 @@ namespace PhotoGallery.Controllers
             _albumService.AddPhotoToAlbum(photoId, albumId);
             return RedirectToAction("AddToAlbum", photoId);
         }
+    
+        public ActionResult Search(string name)
+        {
+            string userId = User.Identity.GetUserId();
+            List<Photo> photos = _photoService.SearchByName(name, userId);
+            return View("Index", photos);
+        }
 
         [HttpGet]
         public ActionResult AdvancedSearch()
