@@ -286,6 +286,7 @@
     <None Include="Views\Photos\AddToAlbum.cshtml" />
     <Content Include="Views\Photos\PhotoModalDialog.cshtml" />
     <Content Include="Views\Photos\AdvancedSearch.cshtml" />
+    <Content Include="Views\Photos\FailedToDeletePhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

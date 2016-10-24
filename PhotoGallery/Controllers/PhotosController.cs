@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -152,8 +153,15 @@ namespace PhotoGallery.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Photo photo = _photoService.GetPhotoById(id);
-            _photoService.Remove(photo);
-            return RedirectToAction("Index");
+            try
+            {
+                _photoService.Remove(photo);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View("FailedToDeletePhoto");
+            }
         }
 
         public ActionResult AddToAlbum(int id)
@@ -161,7 +169,7 @@ namespace PhotoGallery.Controllers
             string userId = User.Identity.GetUserId();
             Photo photo = _photoService.GetPhotoById(id);
             List<Album> albums = _albumService.GetAlbumsOfTheUser(userId);
-            AddToItemViewModel model = new AddToItemViewModel() {Photo = photo, Albums = albums};
+            AddToItemViewModel model = new AddToItemViewModel() { Photo = photo, Albums = albums };
             if (photo == null)
             {
                 return HttpNotFound();
@@ -169,13 +177,13 @@ namespace PhotoGallery.Controllers
             return View(model);
         }
 
-        [HttpPost] 
+        [HttpPost]
         public ActionResult AddToAlbum(int photoId, int albumId)
         {
             _albumService.AddPhotoToAlbum(photoId, albumId);
             return RedirectToAction("AddToAlbum", photoId);
         }
-    
+
         public ActionResult Search(string name)
         {
             string userId = User.Identity.GetUserId();
