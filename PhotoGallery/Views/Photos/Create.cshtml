@@ -35,8 +35,8 @@
         <div class="form-group">
             @Html.Label("Choose Image", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="file"
-                       accept=".jpg" />
+                @Html.TextBoxFor(m => m.File, new { type = "file", accept = ".jpg" })
+                @Html.ValidationMessageFor(m => m.File, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -54,6 +54,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/createPhoto")
 }
 
 
