@@ -91,20 +91,17 @@ namespace PhotoGallery.Services.Services
             {
                 PhotoBytesContent photoBytesContent = new PhotoBytesContent();
 
-                // Save thumbnail size image, 100 x 100
-                Size imgSize = NewImageSize(img.Size, new Size(100, 100));
+                Size imgSize = NewImageSize(img.Size, new Size(200, 200));
                 using (Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
                 {
                     photoBytesContent.ThumbPhoto = ImageToByteArray(newImg);
                 }
 
-                // Save original size image
                 using (Image newImg = new Bitmap(img, img.Size.Width, img.Size.Height))
                 {
                     photoBytesContent.OriginalPhoto = ImageToByteArray(newImg);
                 }
 
-                // Save medium size image, 500 x 500
                 Size mediumSize = NewImageSize(img.Size, new Size(800, 800));
                 using (Image newImg = new Bitmap(img, mediumSize.Width, mediumSize.Height))
                 {
