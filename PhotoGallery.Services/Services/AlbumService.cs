@@ -45,6 +45,10 @@ namespace PhotoGallery.Services.Services
         public void Remove(int albumId)
         {
             Album album = _unitOfWork.Albums.Get(albumId);
+
+            // Remove the association with photo to avoid database errors during album deletion.
+            album.MainPhoto = null;
+
             _unitOfWork.Albums.Remove(album);
             _unitOfWork.Complete();
         }
