@@ -9,6 +9,7 @@ namespace PhotoGallery.Persistence
         public GalleryContext() :base("GalleryContext") { }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Album> Albums { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<PhotoBytesContent> PhotoBytesContents { get; set; }
     }
 }

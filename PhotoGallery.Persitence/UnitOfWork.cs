@@ -17,11 +17,14 @@ namespace PhotoGallery.Persistence
 
         public IPhotoRepository Photos { get; }
 
+        public IUserProfileRepository UserProfiles { get; }
+
         public UnitOfWork()
         {
             _context = new GalleryContext();
             Albums = new AlbumRepository(_context);
             Photos = new PhotoRepository(_context);
+            UserProfiles = new UserProfileRepository(_context);
         }
 
         public int Complete()

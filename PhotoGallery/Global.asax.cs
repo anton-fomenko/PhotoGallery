@@ -22,35 +22,35 @@ namespace PhotoGallery
             Mapper.Initialize(cfg => cfg.CreateMap<Album, AlbumViewModel>());
         }
 
-        protected void Application_Error()
-        {
-            Exception exception = Server.GetLastError();
-            Response.Clear();
+        //protected void Application_Error()
+        //{
+        //    Exception exception = Server.GetLastError();
+        //    Response.Clear();
 
-            string action = "General";
+        //    string action = "General";
 
-            HttpException httpException = exception as HttpException;
+        //    HttpException httpException = exception as HttpException;
 
-            if (httpException != null)
-            {
-                if (exception is HttpRequestValidationException)
-                {
+        //    if (httpException != null)
+        //    {
+        //        if (exception is HttpRequestValidationException)
+        //        {
 
-                    action = "PotentiallyDangerousInput";
-                }
-                else
-                {
-                    switch (httpException.GetHttpCode())
-                    {
-                        case 404:
-                            action = "NotFound";
-                            break;
-                    }
-                }
-                Server.ClearError();
-            }
+        //            action = "PotentiallyDangerousInput";
+        //        }
+        //        else
+        //        {
+        //            switch (httpException.GetHttpCode())
+        //            {
+        //                case 404:
+        //                    action = "NotFound";
+        //                    break;
+        //            }
+        //        }
+        //        Server.ClearError();
+        //    }
 
-            Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, exception.Message));
-        }
+        //    Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, exception.Message));
+        //}
     }
 }

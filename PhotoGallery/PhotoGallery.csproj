@@ -211,11 +211,9 @@
     <Compile Include="Models\AddToItemViewModel.cs" />
     <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\CreatePhotoViewModel.cs" />
-    <Compile Include="Models\FreeUser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PagedList.cs" />
-    <Compile Include="Models\PaidUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
