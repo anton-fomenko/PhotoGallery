@@ -9,7 +9,7 @@ using PhotoGallery.Persistence.Interfaces;
 
 namespace PhotoGallery.Persistence.Repositories
 {
-    class UserProfileRepository : Repository<UserProfile>, IUserProfileRepository
+    public class UserProfileRepository : Repository<UserProfile>, IUserProfileRepository
     {
         private readonly GalleryContext _context;
         public UserProfileRepository(GalleryContext context) : base(context)
@@ -24,10 +24,10 @@ namespace PhotoGallery.Persistence.Repositories
             switch (role)
             {
                 case "FreeUser":
-                    userProfile = new FreeUserProfile();
+                    userProfile = new FreeUserProfile() { UserIdentityId = userId};
                     break;
                 case "PaidUser":
-                    userProfile = new PaidUserProfile();
+                    userProfile = new PaidUserProfile() {UserIdentityId = userId};
                     break;
                 default:
                     throw new ArgumentException("The role for User Profile was not provided.");

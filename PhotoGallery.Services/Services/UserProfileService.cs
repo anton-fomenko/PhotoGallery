@@ -20,6 +20,7 @@ namespace PhotoGallery.Services.Services
         public void CreateUserProfile(string userId, string role)
         {
             _unitOfWork.UserProfiles.CreateUserProfile(userId, role);
+            _unitOfWork.Complete();
         }
     }
 }

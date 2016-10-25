@@ -110,10 +110,17 @@ namespace PhotoGallery.Services.Services
 
                 model.PhotoBytesContent = photoBytesContent;
 
-                // Save record to database
+                // Save records to database
                 model.CreatedOn = DateTime.Now;
 
                 _unitOfWork.Photos.Add(model);
+                UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(x => x.UserIdentityId == model.UserId);
+                FreeUserProfile freeUserProfile = userProfile as FreeUserProfile;
+                if (freeUserProfile != null)
+                {
+                    freeUserProfile.FreePhotosUploaded++;
+                }
+
                 _unitOfWork.Complete();
             }
         }

@@ -11,6 +11,6 @@ namespace PhotoGallery.Domain
     {
         [Key]
         public int UserProfileId { get; set; }
-        public int UserIdentityId { get; set; }
+        public string UserIdentityId { get; set; }
     }
 }
