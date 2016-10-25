@@ -9,5 +9,6 @@ namespace PhotoGallery.Services.Interfaces
     public interface IUserProfileService
     {
         void CreateUserProfile(string userId, string role);
+        bool CanUserAddPhoto(string userId);
     }
 }

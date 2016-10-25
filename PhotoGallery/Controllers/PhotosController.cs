@@ -21,12 +21,14 @@ namespace PhotoGallery.Controllers
     {
         private readonly IPhotoService _photoService;
         private readonly IAlbumService _albumService;
+        private readonly IUserProfileService _userProfileService;
 
         public PhotosController() { }
-        public PhotosController(IPhotoService photoService, IAlbumService albumService)
+        public PhotosController(IPhotoService photoService, IAlbumService albumService, IUserProfileService userProfileService)
         {
             _photoService = photoService;
             _albumService = albumService;
+            _userProfileService = userProfileService;
         }
 
         // GET: Photos
@@ -84,7 +86,13 @@ namespace PhotoGallery.Controllers
                 return View(photo);
             if (photo.File == null)
             {
-                ViewBag.error = "Please choose a file";
+                ViewBag.Error = "Please choose a file";
+                return View(photo);
+            }
+
+            if (!_userProfileService.CanUserAddPhoto(User.Identity.GetUserId()))
+            {
+                ViewBag.Error = "You have reached your maximum number of free photos";
                 return View(photo);
             }
 
