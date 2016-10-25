@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using PhotoGallery.Controllers;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
 
@@ -17,6 +20,37 @@ namespace PhotoGallery
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Mapper.Initialize(cfg => cfg.CreateMap<Album, AlbumViewModel>());
+        }
+
+        protected void Application_Error()
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+
+            string action = "General";
+
+            HttpException httpException = exception as HttpException;
+
+            if (httpException != null)
+            {
+                if (exception is HttpRequestValidationException)
+                {
+
+                    action = "PotentiallyDangerousInput";
+                }
+                else
+                {
+                    switch (httpException.GetHttpCode())
+                    {
+                        case 404:
+                            action = "NotFound";
+                            break;
+                    }
+                }
+                Server.ClearError();
+            }
+
+            Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, exception.Message));
         }
     }
 }

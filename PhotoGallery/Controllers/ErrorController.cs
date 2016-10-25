@@ -13,5 +13,15 @@ namespace PhotoGallery.Controllers
         {
             return View();
         }
+
+        public ActionResult PotentiallyDangerousInput()
+        {
+            return View();
+        }
+
+        public ActionResult General()
+        {
+            return View("Error");
+        }
     }
 }

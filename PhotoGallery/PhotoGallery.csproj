@@ -285,6 +285,7 @@
     <Content Include="Views\Photos\Edit.cshtml" />
     <Content Include="Views\Photos\Index.cshtml" />
     <None Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\PotentiallyDangerousInput.cshtml" />
     <None Include="Views\Photos\AddToAlbum.cshtml" />
     <Content Include="Views\Photos\PhotoModalDialog.cshtml" />
     <Content Include="Views\Photos\AdvancedSearch.cshtml" />
