@@ -10,8 +10,9 @@ namespace PhotoGallery.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [MaxFileSize(500 * 1024, 
-            ErrorMessage = "Maximum allowed file size is 500 kilobytes. Only JPEG files are allowed.")]
+        [MaxFileSize(500 * 1024,
+            ErrorMessage = "Maximum allowed file size is 500 kilobytes. Only JPEG files are allowed."),
+            Required]
         public HttpPostedFileBase File { get; set; }
     }
 }
