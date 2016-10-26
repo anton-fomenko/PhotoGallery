@@ -12,11 +12,6 @@ namespace PhotoGallery.Controllers
     {
         private readonly IPhotoService _photoService;
 
-        public VoteController()
-        {
-            
-        }
-
         public VoteController(IPhotoService photoService)
         {
             _photoService = photoService;

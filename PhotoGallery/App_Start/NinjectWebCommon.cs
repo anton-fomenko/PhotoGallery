@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.Web.Http;
 using Ninject.Modules;
+using Ninject.Web.Mvc;
 using PhotoGallery.DependencyResolver;
 using PhotoGallery.Services.Interfaces;
 using PhotoGallery.Services.Services;
+using PhotoGallery.Utils;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PhotoGallery.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(PhotoGallery.App_Start.NinjectWebCommon), "Stop")]
@@ -68,6 +71,7 @@ namespace PhotoGallery.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new DependencyResolverModule());
+            GlobalConfiguration.Configuration.DependencyResolver = new WebApiNinjectDependencyResolver(kernel);
         }        
     }
 }
