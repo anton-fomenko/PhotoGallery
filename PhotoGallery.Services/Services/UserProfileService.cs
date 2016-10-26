@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using PhotoGallery.Domain;
 using PhotoGallery.Persistence.Interfaces;
 using PhotoGallery.Services.Interfaces;
@@ -27,7 +28,8 @@ namespace PhotoGallery.Services.Services
         public bool CanUserAddPhoto(string userId)
         {
             FreeUserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(x => x.UserIdentityId == userId) as FreeUserProfile;
-            return (userProfile == null) || userProfile.FreePhotosUploaded < 2;
+            int freePhotosLimit = Convert.ToInt32(WebConfigurationManager.AppSettings["freePhotosLimit"]);
+            return (userProfile == null) || userProfile.FreePhotosUploaded < freePhotosLimit;
         }
     }
 }
