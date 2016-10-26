@@ -12,5 +12,6 @@ namespace PhotoGallery.Domain
         [Key]
         public int UserProfileId { get; set; }
         public string UserIdentityId { get; set; }
+        public virtual List<Vote> Votes { get; set; }
     }
 }

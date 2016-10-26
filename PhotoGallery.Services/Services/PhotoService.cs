@@ -55,9 +55,18 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.Get(photoId).Likes;
         }
 
-        public void Like(int photoId)
+        public void Like(int photoId, string userId)
         {
-            _unitOfWork.Photos.Get(photoId).Likes++;
+            Photo photo = _unitOfWork.Photos.Get(photoId);
+            photo.Likes++;
+
+            Vote vote = new Vote()
+            {
+                IsLike = true,
+                Photo = photo
+            };
+
+            _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId).Votes.Add(vote);
             _unitOfWork.Complete();
         }
 
