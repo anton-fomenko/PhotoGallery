@@ -6,44 +6,28 @@ using System.Net.Http;
 using System.Web.Http;
 using PhotoGallery.Services.Interfaces;
 
-namespace PhotoGallery.Controllers
+namespace PhotoGallery.Controllers.ApiControllers
 {
-    public class VoteController : ApiController
+    public class LikesController : ApiController
     {
         private readonly IPhotoService _photoService;
 
-        public VoteController(IPhotoService photoService)
+        public LikesController(IPhotoService photoService)
         {
             _photoService = photoService;
         }
 
-        // GET: api/Vote
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Vote/5
+        // GET: api/Likes/5
         public int Get(int id)
-        { 
+        {
             return _photoService.GetLikes(id);
         }
 
-        // POST: api/Vote
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Vote/5
+        // PUT: api/Likes/5
         public int Put(int id)
         {
             _photoService.Like(id);
             return _photoService.GetLikes(id);
-        }
-
-        // DELETE: api/Vote/5
-        public void Delete(int id)
-        {
         }
 
         protected override void Dispose(bool disposing)

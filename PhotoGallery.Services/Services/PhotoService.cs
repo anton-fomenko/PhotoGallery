@@ -61,6 +61,17 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Complete();
         }
 
+        public int GetDislikes(int photoId)
+        {
+            return _unitOfWork.Photos.Get(photoId).Dislikes;
+        }
+
+        public void Dislike(int photoId)
+        {
+            _unitOfWork.Photos.Get(photoId).Dislikes++;
+            _unitOfWork.Complete();
+        }
+
         public Photo GetPhotoById(int photoId)
         {
             return _unitOfWork.Photos.Get(photoId);
