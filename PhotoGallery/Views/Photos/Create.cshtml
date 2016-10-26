@@ -10,7 +10,9 @@
 @using (Html.BeginForm("Create", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
-    
+
+    @Html.ValidationMessage("Error", new { @class = "text-danger" })
+
     <div class="form-horizontal">
         <h4>Photo</h4>
         <hr />
@@ -45,8 +47,6 @@
                 <input type="submit" value="Create" class="btn btn-default"/>
             </div>
         </div>
-
-        <p class="text-danger"> @ViewBag.Error</p>
     </div>
 }
 

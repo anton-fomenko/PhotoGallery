@@ -92,7 +92,7 @@ namespace PhotoGallery.Controllers
 
             if (!_userProfileService.CanUserAddPhoto(User.Identity.GetUserId()))
             {
-                ViewBag.Error = "You have reached your maximum number of free photos";
+                ModelState.AddModelError("Error", "You have reached your maximum number of free photos");
                 return View(photo);
             }
 
