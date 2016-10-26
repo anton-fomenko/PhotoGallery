@@ -1,10 +1,13 @@
 ﻿$(function () {
     $(".like")
-        .click(function() {
+        .click(function () {
+            var button = $(this);
             $.ajax({
                 type: "PUT",
                 url: 'api/vote/' + $(this).attr('id'),
-                success: updateLikes()
+                success: function(data) {
+                    button.html(data);
+                }
             });
         });
 
