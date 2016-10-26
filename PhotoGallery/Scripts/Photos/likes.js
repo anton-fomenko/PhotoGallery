@@ -10,6 +10,7 @@
                     success: function(data) {
                         likeSpan.text(data);
                         button.addClass('disabled');
+                        button.next().addClass('disabled');
                     }
                 });
             });
@@ -24,6 +25,7 @@
             success: function (data) {
                 likeSpan.text(data);
                 button.addClass('disabled');
+                button.prev().addClass('disabled');
             }
         });
     });
