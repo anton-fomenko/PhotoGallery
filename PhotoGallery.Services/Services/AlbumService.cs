@@ -74,6 +74,12 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Albums.SingleOrDefault(x => x.Name == albumName);
         }
 
+        public bool IsAlbumExists(string name)
+        {
+            IEnumerable<Album> albums = _unitOfWork.Albums.Find(a => a.Name == name);
+            return albums.Any();
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();

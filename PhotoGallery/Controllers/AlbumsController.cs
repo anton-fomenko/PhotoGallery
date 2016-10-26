@@ -90,6 +90,12 @@ namespace PhotoGallery.Controllers
                     return View(model);
                 }
 
+                if (_albumService.IsAlbumExists(album.Name))
+                {
+                    ModelState.AddModelError("Error", "Album with such name already exists");
+                    return View(model);
+                }
+
                 _albumService.AddAlbum(album, model.SelectedMainPhotoId);
                 return RedirectToAction("Index");
             }
