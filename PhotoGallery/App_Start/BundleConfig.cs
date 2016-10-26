@@ -27,7 +27,8 @@ namespace PhotoGallery
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/photos").Include(
-                    "~/Scripts/Photos/photos.js"));
+                    "~/Scripts/Photos/photos.js",
+                    "~/Scripts/Photos/likes.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/createPhoto").Include(
                     "~/Scripts/Photos/createPhoto.js"));
