@@ -1,26 +1,29 @@
 ﻿$(function () {
     $(".btn-like")
         .on('click',
-            function(event) {
-                event.preventDefault();
-                var likeSpan = $(this).children(".like");;
+            function (event) {
+                var button = $(this);
+                var likeSpan = button.children(".like");;
                 $.ajax({
                     type: "PUT",
                     url: 'api/likes/' + likeSpan.attr('id'),
                     success: function(data) {
                         likeSpan.text(data);
+                        button.addClass('disabled');
                     }
                 });
             });
 
     $(".btn-dislike")
     .click(function () {
-        var likeSpan = $(this).children(".dislike");;
+        var button = $(this);
+        var likeSpan = button.children(".dislike");;
         $.ajax({
             type: "PUT",
             url: 'api/dislikes/' + likeSpan.attr('id'),
             success: function (data) {
                 likeSpan.text(data);
+                button.addClass('disabled');
             }
         });
     });
