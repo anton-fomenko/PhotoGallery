@@ -8,6 +8,7 @@ using AutoMapper;
 using PhotoGallery.Controllers;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
+using PhotoGallery.Services.DataObjects;
 
 namespace PhotoGallery
 {
@@ -21,7 +22,7 @@ namespace PhotoGallery
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Album, AlbumViewModel>());
+            Mapper.Initialize(cfg => cfg.CreateMap<Photo, PhotoDto>());
         }
 
         //protected void Application_Error()

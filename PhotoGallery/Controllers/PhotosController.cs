@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
@@ -35,7 +36,8 @@ namespace PhotoGallery.Controllers
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(_photoService.GetPhotosOfTheUser(userId));
+
+            return View(_photoService.GetPhotoDtosOfTheUser(userId));
         }
 
         public ActionResult ShowOriginalPhoto(int id)

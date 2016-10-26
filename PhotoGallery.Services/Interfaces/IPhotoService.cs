@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoGallery.Domain;
+using PhotoGallery.Services.DataObjects;
 
 namespace PhotoGallery.Services.Interfaces
 {
     public interface IPhotoService : IDisposable
     {
         List<Photo> GetPhotosOfTheUser(string userId);
+        List<PhotoDto> GetPhotoDtosOfTheUser(string userId);
         byte[] GetOriginalPhotoInBytesById(int photoId);
         byte[] GetThumbPhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);

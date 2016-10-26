@@ -5,8 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using PhotoGallery.Domain;
 using PhotoGallery.Persistence.Interfaces;
+using PhotoGallery.Services.DataObjects;
 using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Services.Services
@@ -23,6 +25,22 @@ namespace PhotoGallery.Services.Services
         public List<Photo> GetPhotosOfTheUser(string userId)
         {
             return _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
+        }
+
+        public List<PhotoDto> GetPhotoDtosOfTheUser(string userId)
+        {
+            List<Photo> photos = _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
+            List<PhotoDto> photoDtos = new List<PhotoDto>();
+            foreach (Photo photo in photos)
+            {
+                PhotoDto photoDto = Mapper.Map<PhotoDto>(photo);
+
+                UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
+                photoDto.CanVote = userProfile.Votes.All(v => v.Photo.PhotoId != photo.PhotoId);
+
+                photoDtos.Add(photoDto);
+            }
+            return photoDtos;
         }
 
         public byte[] GetOriginalPhotoInBytesById(int photoId)
