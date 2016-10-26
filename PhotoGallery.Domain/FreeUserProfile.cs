@@ -9,5 +9,6 @@ namespace PhotoGallery.Domain
     public class FreeUserProfile : UserProfile
     {
         public int FreePhotosUploaded { get; set; }
+        public int FreeAlbumsCreated { get; set; }
     }
 }

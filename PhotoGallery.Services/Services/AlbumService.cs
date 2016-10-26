@@ -30,6 +30,13 @@ namespace PhotoGallery.Services.Services
             Photo photo = _unitOfWork.Photos.Get(photoId);
             album.MainPhoto = photo;
             _unitOfWork.Albums.Add(album);
+
+            UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(x => x.UserIdentityId == album.UserId);
+            FreeUserProfile freeUserProfile = userProfile as FreeUserProfile;
+            if (freeUserProfile != null)
+            {
+                freeUserProfile.FreeAlbumsCreated++;
+            }
             _unitOfWork.Complete();
         }
 

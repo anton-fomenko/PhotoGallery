@@ -19,18 +19,20 @@ namespace PhotoGallery.Controllers
     {
         private readonly IAlbumService _albumService;
         private readonly IPhotoService _photoService;
-        public AlbumsController() {}
-        public AlbumsController(IAlbumService albumService, IPhotoService photoService)
+        private readonly IUserProfileService _userProfileService;
+        public AlbumsController() { }
+        public AlbumsController(IAlbumService albumService, IPhotoService photoService, IUserProfileService userProfileService)
         {
             _albumService = albumService;
             _photoService = photoService;
+            _userProfileService = userProfileService;
         }
 
         // GET: Albums
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            List<Album> listOfAlbums = _albumService.GetAlbumsOfTheUser(userId); 
+            List<Album> listOfAlbums = _albumService.GetAlbumsOfTheUser(userId);
 
             return View(listOfAlbums);
         }
@@ -43,7 +45,7 @@ namespace PhotoGallery.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Album album =_albumService.GetAlbumByShortenedName(albumName);
+            Album album = _albumService.GetAlbumByShortenedName(albumName);
 
             if (album == null)
             {
@@ -56,9 +58,11 @@ namespace PhotoGallery.Controllers
         public ActionResult Create()
         {
             string userId = User.Identity.GetUserId();
-            List<Photo> photos = _photoService.GetPhotosOfTheUser(userId);
-            ViewBag.photos = photos;
-            return View();
+            CreateAlbumViewModel createAlbumViewModel = new CreateAlbumViewModel
+            {
+                PhotosOfTheUser = _photoService.GetPhotosOfTheUser(userId)
+            };
+            return View(createAlbumViewModel);
         }
 
         // POST: Albums/Create
@@ -66,26 +70,31 @@ namespace PhotoGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Album album, int photoId)
+        public ActionResult Create(CreateAlbumViewModel model)
         {
+            string userId = User.Identity.GetUserId();
+            model.PhotosOfTheUser = _photoService.GetPhotosOfTheUser(userId);
+
             if (ModelState.IsValid)
             {
-                album.UserId = User.Identity.GetUserId();
-
-                if (User.IsInRole("FreeUser"))
+                Album album = new Album()
                 {
-                    if (_albumService.GetAlbumsOfTheUser(album.UserId).Count >= 5)
-                    {
-                        ModelState.AddModelError("Error", "You have exceeded your maximimim number of 5 albums.");
-                        return View();
-                    }
+                    Description = model.Description,
+                    Name = model.Name,
+                    UserId = userId,
+                };
+
+                if (!_userProfileService.CanUserAddAlbum(album.UserId))
+                {
+                    ModelState.AddModelError("Error", "You have reached your maximum number of free albums");
+                    return View(model);
                 }
 
-                _albumService.AddAlbum(album, photoId);
+                _albumService.AddAlbum(album, model.SelectedMainPhotoId);
                 return RedirectToAction("Index");
             }
 
-            return View(album);
+            return View(model);
         }
 
         // GET: Albums/Edit/5

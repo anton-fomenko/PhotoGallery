@@ -31,5 +31,12 @@ namespace PhotoGallery.Services.Services
             int freePhotosLimit = Convert.ToInt32(WebConfigurationManager.AppSettings["freePhotosLimit"]);
             return (userProfile == null) || userProfile.FreePhotosUploaded < freePhotosLimit;
         }
+
+        public bool CanUserAddAlbum(string userId)
+        {
+            FreeUserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(x => x.UserIdentityId == userId) as FreeUserProfile;
+            int freeAlbumsLimit = Convert.ToInt32(WebConfigurationManager.AppSettings["freeAlbumsLimit"]);
+            return (userProfile == null) || userProfile.FreeAlbumsCreated < freeAlbumsLimit;
+        }
     }
 }

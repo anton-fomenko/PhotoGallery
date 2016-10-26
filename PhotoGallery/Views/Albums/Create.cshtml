@@ -1,5 +1,5 @@
 ﻿@using PhotoGallery.Domain
-@model PhotoGallery.Domain.Album
+@model PhotoGallery.Models.CreateAlbumViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.ValidationMessage("Error")
+    @Html.ValidationMessage("Error", new { @class = "text-danger" })
 
     <div class="form-horizontal">
         <h4>Album</h4>
@@ -40,8 +40,8 @@
         </div>
     </div>
 
-    <select name="photoId">
-        @foreach (Photo photo in ViewBag.photos)
+    <select name="SelectedMainPhotoId">
+        @foreach (Photo photo in Model.PhotosOfTheUser)
         {
             <option value="@photo.PhotoId">@photo.Name</option>
         }
