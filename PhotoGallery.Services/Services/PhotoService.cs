@@ -50,6 +50,11 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.SearchByName(photoName, userId).ToList();
         }
 
+        public int GetLikes(int photoId)
+        {
+            return _unitOfWork.Photos.Get(photoId).Likes;
+        }
+
         public Photo GetPhotoById(int photoId)
         {
             return _unitOfWork.Photos.Get(photoId);

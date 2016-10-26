@@ -20,5 +20,6 @@ namespace PhotoGallery.Services.Interfaces
         byte[] GetMediumPhotoInBytesById(int id);
         List<Photo> Search(Photo photo, string userId);
         List<Photo> SearchByName(string photoName, string userId);
+        int GetLikes(int photoId);
     }
 }

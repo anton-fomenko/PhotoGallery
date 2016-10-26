@@ -36,6 +36,7 @@ namespace PhotoGallery.Domain
 
         public virtual List<Album> Albums { get; set; }
         public virtual PhotoBytesContent PhotoBytesContent { get; set; }
-
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
     }
 }

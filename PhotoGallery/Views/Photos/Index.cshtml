@@ -28,7 +28,8 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
 
                 <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 0
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span class="like" id="@item.PhotoId"></span>
                 </button>
                 <button type="button" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 0
@@ -43,4 +44,5 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/photos")
+    <script src="~/Scripts/Photos/likes.js"></script>
 }
