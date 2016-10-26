@@ -26,6 +26,13 @@
                 </a>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId })
                 @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
+
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 0
+                </button>
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 0
+                </button>
             </div>
         }
     </div>
