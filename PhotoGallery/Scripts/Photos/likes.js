@@ -1,4 +1,13 @@
 ﻿$(function () {
+    $(".like")
+        .click(function() {
+            $.ajax({
+                type: "PUT",
+                url: 'api/vote/' + $(this).attr('id'),
+                success: updateLikes()
+            });
+        });
+
     updateLikes();
 });
 

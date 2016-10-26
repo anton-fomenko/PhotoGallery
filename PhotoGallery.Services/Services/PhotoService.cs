@@ -55,6 +55,12 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.Get(photoId).Likes;
         }
 
+        public void Like(int photoId)
+        {
+            _unitOfWork.Photos.Get(photoId).Likes++;
+            _unitOfWork.Complete();
+        }
+
         public Photo GetPhotoById(int photoId)
         {
             return _unitOfWork.Photos.Get(photoId);

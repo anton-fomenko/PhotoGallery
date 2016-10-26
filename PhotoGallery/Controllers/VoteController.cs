@@ -35,8 +35,9 @@ namespace PhotoGallery.Controllers
         }
 
         // PUT: api/Vote/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id)
         {
+            _photoService.Like(id);
         }
 
         // DELETE: api/Vote/5

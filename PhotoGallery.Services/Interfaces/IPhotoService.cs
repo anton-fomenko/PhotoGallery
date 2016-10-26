@@ -21,5 +21,6 @@ namespace PhotoGallery.Services.Interfaces
         List<Photo> Search(Photo photo, string userId);
         List<Photo> SearchByName(string photoName, string userId);
         int GetLikes(int photoId);
+        void Like(int photoId);
     }
 }
