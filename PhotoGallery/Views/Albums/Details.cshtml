@@ -9,7 +9,7 @@
 
 <div>
     <h4>Album</h4>
-    <hr/>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -30,6 +30,15 @@
     </dl>
 </div>
 
+<div clas="row" class="text-center">
+    <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = Model.MainPhoto.PhotoId})'
+       title="@Model.Description">
+        <img src='@Url.Action("ShowMediumPhoto", "Photos", new {id = Model.MainPhoto.PhotoId})'
+             alt="@Model.Description"
+             class="img-thumbnail" />
+    </a>
+</div>
+
 <div class="row">
     @foreach (Photo photo in Model.Photos)
     {
@@ -46,7 +55,7 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) | 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
