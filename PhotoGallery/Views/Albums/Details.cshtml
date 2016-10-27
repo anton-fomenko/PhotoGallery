@@ -9,7 +9,7 @@
 
 <div>
     <h4>Album</h4>
-    <hr />
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -30,6 +30,8 @@
     </dl>
 </div>
 
+<button class="deletePhotos">Delete Selected From Album</button>
+
 <div clas="row" class="text-center">
     <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = Model.MainPhoto.PhotoId})'
        title="@Model.Description">
@@ -49,4 +51,5 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/photos")
+    <script src="~/Scripts/Albums/albumDetails.js"></script>
 }

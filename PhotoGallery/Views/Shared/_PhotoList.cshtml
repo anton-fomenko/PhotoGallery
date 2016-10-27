@@ -11,11 +11,12 @@
                    data-toggle="modal"
                    data-id="@item.PhotoId">
                     <p>@item.Name</p>
-                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = item.PhotoId }), @item.Description)
+                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId}), @item.Description)
                 </a>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId }) |
-                @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId })
+                <input type="checkbox" class="img-checkbox" data-photoid="@item.PhotoId"/>
+                @Html.ActionLink("Edit", "Edit", "Photos", new { id = item.PhotoId }, null) |
+                @Html.ActionLink("Delete", "Delete", "Photos", new { id = item.PhotoId}, null) |
+                @Html.ActionLink("Add to Album", "AddToAlbum", "Photos", new { id = item.PhotoId }, null)
 
                 <button type="button" class="btn btn-default btn-sm btn-like @(item.Liked ? "btn-success" : "")" @(item.CanVote ? "" : "disabled")>
                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
