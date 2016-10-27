@@ -1,4 +1,5 @@
-﻿@model List<PhotoGallery.Services.DataObjects.PhotoDto>
+﻿@using PhotoGallery.Helpers
+@model List<PhotoGallery.Services.DataObjects.PhotoDto>
 
 @{
     ViewBag.Title = "Photos";
@@ -21,8 +22,7 @@
                    data-toggle="modal"
                    data-id="@item.PhotoId">
                     <p>@item.Name</p>
-                    <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
-                         alt="@item.Description"/>
+                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = item.PhotoId }), @item.Description)
                 </a>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId }) |
