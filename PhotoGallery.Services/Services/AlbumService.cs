@@ -80,6 +80,11 @@ namespace PhotoGallery.Services.Services
             return albums.Any();
         }
 
+        public void RemovePhotoFromAlbum(int photoId, int albumId)
+        {
+            //_unitOfWork.Albums.get
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();

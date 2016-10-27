@@ -157,6 +157,13 @@ namespace PhotoGallery.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult RemoveFromAlbum(int id, int albumId)
+        {
+            string userId = User.Identity.GetUserId();
+            _albumService.RemovePhotoFromAlbum(id, albumId);
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

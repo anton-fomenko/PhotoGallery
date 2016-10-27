@@ -1,0 +1,38 @@
+﻿@using PhotoGallery.Helpers
+@model IEnumerable<PhotoGallery.Services.DataObjects.PhotoDto>
+
+<div class="col-sm-12">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6">
+                <a class="thumbnail"
+                   data-target="#photoModal"
+                   data-toggle="modal"
+                   data-id="@item.PhotoId">
+                    <p>@item.Name</p>
+                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = item.PhotoId }), @item.Description)
+                </a>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId }) |
+                @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId })
+
+                <button type="button" class="btn btn-default btn-sm btn-like @(item.Liked ? "btn-success" : "")" @(item.CanVote ? "" : "disabled")>
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span class="like" id="@item.PhotoId"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm btn-dislike @(!item.Liked && !item.CanVote ? "btn-danger" : "")" @(item.CanVote ? "" : "disabled")>
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    <span class="dislike" id="@item.PhotoId"></span>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal" id="photoModal" tabindex="-1" data-url='@Url.Action("PhotoModalDialog")'>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/photos")
+}
