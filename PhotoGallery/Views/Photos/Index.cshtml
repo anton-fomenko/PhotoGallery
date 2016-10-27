@@ -24,8 +24,9 @@
                     <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.PhotoId})'
                          alt="@item.Description"/>
                 </a>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId })
-                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId }) |
+                @Html.ActionLink("Add to Album", "AddToAlbum", new { id = item.PhotoId }) 
 
                 <button type="button" class="btn btn-default btn-sm btn-like @(item.Liked ? "btn-success" : "")" @(item.CanVote ? "" : "disabled")>
                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
