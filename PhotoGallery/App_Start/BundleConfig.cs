@@ -30,6 +30,9 @@ namespace PhotoGallery
                     "~/Scripts/Photos/photos.js",
                     "~/Scripts/Photos/likes.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/albums").Include(
+                "~/Scripts/Albums/albums.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/createPhoto").Include(
                     "~/Scripts/Photos/createPhoto.js"));
         }
