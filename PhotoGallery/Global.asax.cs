@@ -22,8 +22,11 @@ namespace PhotoGallery
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Photo, PhotoDto>());
-            Mapper.Initialize(cfg => cfg.CreateMap<Album, AlbumDto>());
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Photo, PhotoDto>();
+                cfg.CreateMap<Album, AlbumDto>();
+            });
         }
 
         //protected void Application_Error()
