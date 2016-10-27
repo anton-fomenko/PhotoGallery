@@ -1,7 +1,7 @@
 ﻿$(function () {
     $(".btn-like")
         .on('click',
-            function (event) {
+            function () {
                 var button = $(this);
                 var likeSpan = button.children(".like");;
                 $.ajax({

@@ -28,13 +28,23 @@
         @foreach (var item in Model)
         {
             <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href='@Url.Action("Details", "Albums", new { albumName = item.Name.Replace(" ", "-")})' class="thumbnail">
+                <a href='@Url.Action("Details", "Albums", new {albumName = item.Name.Replace(" ", "-")})' class="thumbnail">
                     <p>@item.Name</p>
                     <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.MainPhoto.PhotoId})'
-                         alt="@item.Description" />
+                         alt="@item.Description"/>
+
                 </a>
+
+                @{
+                    RouteValueDictionary routeValueDictinary = new RouteValueDictionary();
+                    routeValueDictinary["albumName"] = item.Name.Replace(" ", "-");
+                }
+                <button class="copyToClipboardButton" data-url='@Url.Action("Details", "Albums", routeValueDictinary, Request.Url?.Scheme, null)'>Get Link</button>
             </div>
         }
     </div>
 </div>
 
+@section Scripts{
+<script src="~/Scripts/Albums/albums.js"></script>
+}
