@@ -23,6 +23,7 @@ namespace PhotoGallery
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Mapper.Initialize(cfg => cfg.CreateMap<Photo, PhotoDto>());
+            Mapper.Initialize(cfg => cfg.CreateMap<Album, AlbumDto>());
         }
 
         //protected void Application_Error()

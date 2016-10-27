@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoGallery.Domain;
+using PhotoGallery.Services.DataObjects;
 
 namespace PhotoGallery.Services.Interfaces
 {
@@ -15,7 +16,7 @@ namespace PhotoGallery.Services.Interfaces
         void Modify(Album album);
         void Remove(int albumId);
         void AddPhotoToAlbum(int photoId, int albumId);
-        Album GetAlbumByShortenedName(string albumName);
+        AlbumDto GetAlbumByShortenedName(string albumName);
         bool IsAlbumExists(string name);
         void RemovePhotoFromAlbum(int photoId, int albumId);
     }

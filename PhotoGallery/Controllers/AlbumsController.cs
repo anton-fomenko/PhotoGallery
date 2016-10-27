@@ -10,6 +10,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
+using PhotoGallery.Services.DataObjects;
 using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Controllers
@@ -45,7 +46,7 @@ namespace PhotoGallery.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Album album = _albumService.GetAlbumByShortenedName(albumName);
+            AlbumDto album = _albumService.GetAlbumByShortenedName(albumName);
 
             if (album == null)
             {

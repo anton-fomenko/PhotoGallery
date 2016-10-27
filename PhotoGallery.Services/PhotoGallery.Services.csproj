@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataObjects\AlbumDto.cs" />
     <Compile Include="DataObjects\PhotoDto.cs" />
     <Compile Include="Interfaces\IAlbumService.cs" />
     <Compile Include="Interfaces\IPhotoService.cs" />

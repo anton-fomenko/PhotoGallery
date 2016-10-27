@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using PhotoGallery.Domain;
 using PhotoGallery.Persistence.Interfaces;
+using PhotoGallery.Services.DataObjects;
 using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Services.Services
@@ -68,10 +70,11 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Complete();
         }
 
-        public Album GetAlbumByShortenedName(string albumName)
+        public AlbumDto GetAlbumByShortenedName(string albumName)
         {
             albumName = albumName.Replace("-", " ");
-            return _unitOfWork.Albums.SingleOrDefault(x => x.Name == albumName);
+            Album album = _unitOfWork.Albums.SingleOrDefault(x => x.Name == albumName);
+            return Mapper.Map<AlbumDto>(album);
         }
 
         public bool IsAlbumExists(string name)
