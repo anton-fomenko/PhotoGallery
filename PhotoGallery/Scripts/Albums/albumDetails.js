@@ -1,19 +1,24 @@
 ﻿$(function () {
-    $(".deletePhotos")
+    var deletePhotoButton = $(".deletePhotos");
+    deletePhotoButton
         .on('click',
             function () {
                 var checkboxes = $(".img-checkbox");
-                var arrayOfPhotoIds = [];
+
+                var request = {
+                    arrayOfPhotoIds: [],
+                    albumId: deletePhotoButton.data('id')
+                }
 
                 checkboxes.each(function () {
-                    arrayOfPhotoIds.push($(this).data("photoid"));
+                    request.arrayOfPhotoIds.push($(this).data("photoid"));
                 });
 
                 $.ajax({
                     type: "DELETE",
                     url: '/api/album',
-                    data: JSON.stringify(arrayOfPhotoIds),
-                    success: function (data) {
+                    data: JSON.stringify(request),
+                    success: function () {
                         location.reload();
                     }
                 });

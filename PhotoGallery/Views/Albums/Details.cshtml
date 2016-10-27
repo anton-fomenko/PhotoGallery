@@ -30,7 +30,7 @@
     </dl>
 </div>
 
-<button class="deletePhotos">Delete Selected From Album</button>
+<button class="deletePhotos" data-id="@Model.Id">Delete Selected From Album</button>
 
 <div clas="row" class="text-center">
     <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = Model.MainPhoto.PhotoId})'
