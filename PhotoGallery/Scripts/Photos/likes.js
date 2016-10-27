@@ -10,6 +10,7 @@
                     success: function(data) {
                         likeSpan.text(data);
                         button.addClass('disabled');
+                        button.addClass('btn-success');
                         button.next().addClass('disabled');
                     }
                 });
@@ -25,6 +26,7 @@
             success: function (data) {
                 likeSpan.text(data);
                 button.addClass('disabled');
+                button.addClass('btn-danger');
                 button.prev().addClass('disabled');
             }
         });

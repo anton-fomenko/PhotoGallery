@@ -10,6 +10,6 @@ namespace PhotoGallery.Domain
     {
         public int Id { get; set; }
         public Photo Photo { get; set; }
-        public bool IsLike { get; set; }
+        public bool Liked { get; set; }
     }
 }

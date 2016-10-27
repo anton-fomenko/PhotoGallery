@@ -13,6 +13,7 @@ namespace PhotoGallery.Services.DataObjects
         public int PhotoId { get; set; }
 
         public bool CanVote { get; set; }
+        public bool Liked { get; set; }
 
         public string Name { get; set; }
 

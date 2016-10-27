@@ -36,7 +36,13 @@ namespace PhotoGallery.Services.Services
                 PhotoDto photoDto = Mapper.Map<PhotoDto>(photo);
 
                 UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
-                photoDto.CanVote = userProfile.Votes.All(v => v.Photo.PhotoId != photo.PhotoId);
+                Vote vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
+                photoDto.CanVote = vote == null;
+
+                if (!photoDto.CanVote)
+                {
+                    if (vote != null) photoDto.Liked = vote.Liked;
+                }
 
                 photoDtos.Add(photoDto);
             }
@@ -80,7 +86,7 @@ namespace PhotoGallery.Services.Services
 
             Vote vote = new Vote()
             {
-                IsLike = true,
+                Liked = true,
                 Photo = photo
             };
 
@@ -93,9 +99,18 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.Get(photoId).Dislikes;
         }
 
-        public void Dislike(int photoId)
+        public void Dislike(int photoId, string userId)
         {
-            _unitOfWork.Photos.Get(photoId).Dislikes++;
+            Photo photo = _unitOfWork.Photos.Get(photoId);
+            photo.Dislikes++;
+
+            Vote vote = new Vote()
+            {
+                Liked = false,
+                Photo = photo
+            };
+
+            _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId).Votes.Add(vote);
             _unitOfWork.Complete();
         }
 

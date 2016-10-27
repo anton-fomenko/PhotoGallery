@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 using PhotoGallery.Services.Interfaces;
 
 namespace PhotoGallery.Controllers.ApiControllers
@@ -26,8 +27,9 @@ namespace PhotoGallery.Controllers.ApiControllers
         // PUT: api/Dislikes/5
         public int Put(int id)
         {
-            _photoService.Dislike(id);
-            return _photoService.GetDislikes(id);
+            string userId = User.Identity.GetUserId();
+            _photoService.Dislike(id, userId);
+            return _photoService.GetLikes(id);
         }
     }
 }
