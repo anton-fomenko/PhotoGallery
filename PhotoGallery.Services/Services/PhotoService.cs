@@ -30,22 +30,7 @@ namespace PhotoGallery.Services.Services
         public List<PhotoDto> GetPhotoDtosOfTheUser(string userId)
         {
             List<Photo> photos = _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
-            List<PhotoDto> photoDtos = new List<PhotoDto>();
-            foreach (Photo photo in photos)
-            {
-                PhotoDto photoDto = Mapper.Map<PhotoDto>(photo);
-
-                UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
-                Vote vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
-                photoDto.CanVote = vote == null;
-
-                if (!photoDto.CanVote)
-                {
-                    if (vote != null) photoDto.Liked = vote.Liked;
-                }
-
-                photoDtos.Add(photoDto);
-            }
+            List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
             return photoDtos;
         }
 
@@ -64,14 +49,18 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.GetMediumPhoto(photoId);
         }
 
-        public List<Photo> Search(Photo photoModel, string userId)
+        public List<PhotoDto> Search(Photo photoModel, string userId)
         {
-            return _unitOfWork.Photos.Search(photoModel, userId).ToList();
+            List<Photo> photos = _unitOfWork.Photos.Search(photoModel, userId).ToList();
+            List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
+            return photoDtos;
         }
 
-        public List<Photo> SearchByName(string photoName, string userId)
+        public List<PhotoDto> SearchByName(string photoName, string userId)
         {
-            return _unitOfWork.Photos.SearchByName(photoName, userId).ToList();
+            List<Photo> photos = _unitOfWork.Photos.SearchByName(photoName, userId).ToList();
+            List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
+            return photoDtos;
         }
 
         public int GetLikes(int photoId)
@@ -213,6 +202,27 @@ namespace PhotoGallery.Services.Services
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
+        }
+
+        private List<PhotoDto> PreparePhotoDtoList(string userId, List<Photo> photos)
+        {
+            List<PhotoDto> photoDtos = new List<PhotoDto>();
+            foreach (Photo photo in photos)
+            {
+                PhotoDto photoDto = Mapper.Map<PhotoDto>(photo);
+
+                UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
+                Vote vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
+                photoDto.CanVote = vote == null;
+
+                if (!photoDto.CanVote)
+                {
+                    if (vote != null) photoDto.Liked = vote.Liked;
+                }
+
+                photoDtos.Add(photoDto);
+            }
+            return photoDtos;
         }
     }
 }

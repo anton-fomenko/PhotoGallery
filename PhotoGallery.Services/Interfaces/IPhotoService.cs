@@ -20,8 +20,8 @@ namespace PhotoGallery.Services.Interfaces
         void Remove(Photo photo);
         void AddPhoto(Photo model, Stream inputStream);
         byte[] GetMediumPhotoInBytesById(int id);
-        List<Photo> Search(Photo photo, string userId);
-        List<Photo> SearchByName(string photoName, string userId);
+        List<PhotoDto> Search(Photo photo, string userId);
+        List<PhotoDto> SearchByName(string photoName, string userId);
         int GetLikes(int photoId);
         void Like(int photoId, string userId);
         int GetDislikes(int photoId);
