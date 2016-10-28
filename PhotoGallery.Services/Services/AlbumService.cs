@@ -12,10 +12,12 @@ namespace PhotoGallery.Services.Services
     public class AlbumService : IAlbumService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPhotoService _photoService;
 
-        public AlbumService(IUnitOfWork unitOfWork)
+        public AlbumService(IUnitOfWork unitOfWork, IPhotoService photoService)
         {
             _unitOfWork = unitOfWork;
+            _photoService = photoService;
         }
 
         public List<Album> GetAlbumsOfTheUser(string userId)
@@ -71,11 +73,16 @@ namespace PhotoGallery.Services.Services
             _unitOfWork.Complete();
         }
 
-        public AlbumDto GetAlbumByShortenedName(string albumName)
+        public AlbumDto GetAlbumByShortenedName(string albumName, string userId)
         {
             albumName = albumName.Replace("-", " ");
             Album album = _unitOfWork.Albums.SingleOrDefault(x => x.Name == albumName);
-            return Mapper.Map<AlbumDto>(album);
+            AlbumDto albumDto = Mapper.Map<AlbumDto>(album);
+
+            List<PhotoDto> photoDtoList = _photoService.PreparePhotoDtoList(userId, album.Photos);
+            albumDto.Photos = photoDtoList;
+
+            return albumDto;
         }
 
         public bool IsAlbumExists(string name)

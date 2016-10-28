@@ -27,5 +27,6 @@ namespace PhotoGallery.Services.Interfaces
         void Like(int photoId, string userId);
         int GetDislikes(int photoId);
         void Dislike(int photoId, string userId);
+        List<PhotoDto> PreparePhotoDtoList(string userId, List<Photo> photos);
     }
 }

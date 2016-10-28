@@ -16,7 +16,7 @@ namespace PhotoGallery.Services.Interfaces
         void Modify(Album album);
         void Remove(int albumId);
         void AddPhotoToAlbum(int photoId, int albumId);
-        AlbumDto GetAlbumByShortenedName(string albumName);
+        AlbumDto GetAlbumByShortenedName(string albumName, string userId);
         bool IsAlbumExists(string name);
         void RemovePhotoFromAlbum(int photoId, int albumId);
         void DeletePhotosFromAlbum(DeletePhotosFromAlbumModel model);

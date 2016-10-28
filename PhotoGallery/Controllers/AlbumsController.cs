@@ -46,7 +46,7 @@ namespace PhotoGallery.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            AlbumDto album = _albumService.GetAlbumByShortenedName(albumName);
+            AlbumDto album = _albumService.GetAlbumByShortenedName(albumName, User.Identity.GetUserId());
 
             if (album == null)
             {

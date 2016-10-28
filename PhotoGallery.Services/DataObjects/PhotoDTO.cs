@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoGallery.Domain;
+using System.ComponentModel;
 
 namespace PhotoGallery.Services.DataObjects
 {
@@ -12,6 +13,7 @@ namespace PhotoGallery.Services.DataObjects
     {
         public int PhotoId { get; set; }
 
+        [DefaultValue(true)]
         public bool CanVote { get; set; }
         public bool Liked { get; set; }
 

@@ -202,7 +202,7 @@ namespace PhotoGallery.Services.Services
             return ms.ToArray();
         }
 
-        private List<PhotoDto> PreparePhotoDtoList(string userId, List<Photo> photos)
+        public List<PhotoDto> PreparePhotoDtoList(string userId, List<Photo> photos)
         {
             List<PhotoDto> photoDtos = new List<PhotoDto>();
             foreach (Photo photo in photos)
