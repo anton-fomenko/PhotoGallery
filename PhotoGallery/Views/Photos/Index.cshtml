@@ -14,7 +14,7 @@
 @using (Html.BeginForm("DeleteSelected", "Photos"))
 {
     <input type="submit" value="Delete Selected" />
-    @Html.Partial("_PhotoList", Model.CanBeChanged)
+    @Html.Partial("_PhotoList", Model)
 }
 @section Scripts{
     @Scripts.Render("~/bundles/photos")

@@ -35,6 +35,9 @@ namespace PhotoGallery
 
             bundles.Add(new ScriptBundle("~/bundles/createPhoto").Include(
                     "~/Scripts/Photos/createPhoto.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/albumDetails").Include(
+                    "~/Scripts/Albums/albumDetails.js"));
         }
     }
 }

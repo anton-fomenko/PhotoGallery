@@ -3,7 +3,7 @@
     deletePhotoButton
         .on('click',
             function () {
-                var checkboxes = $(".img-checkbox");
+                var checkboxes = $(".img-checkbox:checked");
 
                 var request = {
                     arrayOfPhotoIds: [],
