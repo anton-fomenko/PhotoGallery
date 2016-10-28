@@ -13,10 +13,10 @@
                     <p>@item.Name</p>
                     @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = item.PhotoId }), @item.Description)
                 </a>
-                <input type="checkbox" name="selectedItems" class="img-checkbox" data-photoid="@item.PhotoId" value="@item.PhotoId" />
 
                 @if (Model.CanBeChanged)
                 {
+                    <input type="checkbox" name="selectedItems" class="img-checkbox" data-photoid="@item.PhotoId" value="@item.PhotoId" />
                     @Html.ActionLink("Edit", "Edit", "Photos", new { id = item.PhotoId }, null)
                     @:|
                     @Html.ActionLink("Delete", "Delete", "Photos", new { id = item.PhotoId }, null)
