@@ -29,7 +29,7 @@ namespace PhotoGallery.Controllers.ApiControllers
         {
             string userId = User.Identity.GetUserId();
             _photoService.Dislike(id, userId);
-            return _photoService.GetLikes(id);
+            return _photoService.GetDislikes(id);
         }
     }
 }

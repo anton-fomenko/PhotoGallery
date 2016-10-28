@@ -3,7 +3,7 @@
         .on('click',
             function () {
                 var button = $(this);
-                var likeSpan = button.children(".like");;
+                var likeSpan = button.children(".like");
                 $.ajax({
                     type: "PUT",
                     url: '/api/likes/' + likeSpan.attr('id'),
@@ -19,10 +19,10 @@
     $(".btn-dislike")
     .click(function () {
         var button = $(this);
-        var likeSpan = button.children(".dislike");;
+        var likeSpan = button.children(".dislike");
         $.ajax({
             type: "PUT",
-            url: '~/api/dislikes/' + likeSpan.attr('id'),
+            url: '/api/dislikes/' + likeSpan.attr('id'),
             success: function (data) {
                 likeSpan.text(data);
                 button.addClass('disabled');
