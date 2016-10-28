@@ -97,7 +97,6 @@ namespace PhotoGallery.Services.Services
         public void DeletePhotosFromAlbum(DeletePhotosFromAlbumModel model)
         {
             Album album = _unitOfWork.Albums.Get(model.AlbumId);
-            //IEnumerable<Photo> photosToRemove = album.Photos.Where(p => model.ArrayOfPhotoIds.Any(id => id == p.PhotoId));
             album.Photos.RemoveAll(p => model.ArrayOfPhotoIds.Any(id => id == p.PhotoId));
             _unitOfWork.Complete();
         }
