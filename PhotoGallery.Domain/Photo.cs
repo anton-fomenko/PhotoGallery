@@ -13,8 +13,7 @@ namespace PhotoGallery.Domain
 
         public string Description { get; set; }
     
-        [Display(Name = "Created On")]
-        public DateTime? CreatedOn { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         public string Location { get; set; }
 

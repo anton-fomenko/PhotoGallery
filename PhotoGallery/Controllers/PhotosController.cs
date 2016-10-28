@@ -83,30 +83,26 @@ namespace PhotoGallery.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreatePhotoViewModel photo)
+        public ActionResult Create(CreatePhotoViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(photo);
-            if (photo.File == null)
+                return View(model);
+            if (model.File == null)
             {
                 ViewBag.Error = "Please choose a file";
-                return View(photo);
+                return View(model);
             }
 
             if (!_userProfileService.CanUserAddPhoto(User.Identity.GetUserId()))
             {
                 ModelState.AddModelError("Error", "You have reached your maximum number of free photos");
-                return View(photo);
+                return View(model);
             }
 
-            var model = new Photo
-            {
-                Name = photo.Name,
-                Description = photo.Description,
-                UserId = User.Identity.GetUserId()
-            };
+            Photo photo = Mapper.Map<Photo>(model);
+            photo.UserId = User.Identity.GetUserId();
 
-            _photoService.AddPhoto(model, photo.File.InputStream);
+            _photoService.AddPhoto(photo, model.File.InputStream);
 
             return RedirectToAction("Index");
         }

@@ -73,8 +73,8 @@ namespace PhotoGallery.Persistence.Repositories
                 query = query.Where(s => s.Aperture == photoModel.Aperture);
             if (photoModel.CameraModel != null)
                 query = query.Where(s => s.CameraModel == photoModel.CameraModel);
-            if (photoModel.CreatedOn != null)
-                query = query.Where(s => s.CreatedOn == photoModel.CreatedOn);
+            if (photoModel.CreationDate != null)
+                query = query.Where(s => s.CreationDate == photoModel.CreationDate);
             if (photoModel.Flash != null)
                 query = query.Where(s => s.Flash == photoModel.Flash);
 

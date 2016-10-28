@@ -121,7 +121,7 @@ namespace PhotoGallery.Services.Services
             originalPhoto.Iso = photo.Iso;
             originalPhoto.ShutterSpeed = photo.ShutterSpeed;
             originalPhoto.Location = photo.Location;
-            originalPhoto.CreatedOn = photo.CreatedOn;
+            originalPhoto.CreationDate = photo.CreationDate;
 
             _unitOfWork.Photos.Modify(originalPhoto);
             _unitOfWork.Complete();
@@ -164,8 +164,6 @@ namespace PhotoGallery.Services.Services
                 model.PhotoBytesContent = photoBytesContent;
 
                 // Save records to database
-                model.CreatedOn = DateTime.Now;
-
                 _unitOfWork.Photos.Add(model);
                 UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(x => x.UserIdentityId == model.UserId);
                 FreeUserProfile freeUserProfile = userProfile as FreeUserProfile;

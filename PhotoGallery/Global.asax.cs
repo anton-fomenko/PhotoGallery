@@ -26,6 +26,7 @@ namespace PhotoGallery
             {
                 cfg.CreateMap<Photo, PhotoDto>();
                 cfg.CreateMap<Album, AlbumDto>();
+                cfg.CreateMap<CreatePhotoViewModel, Photo>();
             });
         }
 
