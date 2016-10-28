@@ -26,6 +26,7 @@ namespace PhotoGallery.Domain
         [Range(0, int.MaxValue)]
         public int? FocalLengthOfLens { get; set; }
 
+        [Range(0.0f, float.MaxValue)]
         public float? Aperture { get; set; }
 
         [Display(Name = "Shutter Speed")]
