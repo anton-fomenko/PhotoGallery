@@ -23,6 +23,7 @@ namespace PhotoGallery.Domain
         public string CameraModel { get; set; }
 
         [Display(Name = "Focal Length of the Lens")]
+        [Range(0, int.MaxValue)]
         public int? FocalLengthOfLens { get; set; }
 
         public float? Aperture { get; set; }
