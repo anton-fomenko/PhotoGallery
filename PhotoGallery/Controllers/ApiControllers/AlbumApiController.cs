@@ -1,4 +1,6 @@
 ﻿using PhotoGallery.Models;
+using PhotoGallery.Services.DataObjects;
+using PhotoGallery.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,16 @@ namespace PhotoGallery.Controllers.ApiControllers
 {
     public class AlbumApiController : ApiController
     {
+        private readonly IAlbumService _albumService;
+        public AlbumApiController() { }
+        public AlbumApiController(IAlbumService albumService)
+        {
+            _albumService = albumService;
+        }
+
         public void Delete(DeletePhotosFromAlbumModel model)
         {
-            int s = 2 + 2;
+            _albumService.DeletePhotosFromAlbum(model);
         }
     }
 }

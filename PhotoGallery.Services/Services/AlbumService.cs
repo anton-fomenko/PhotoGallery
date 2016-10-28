@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using PhotoGallery.Domain;
@@ -91,6 +92,14 @@ namespace PhotoGallery.Services.Services
         public void Dispose()
         {
             _unitOfWork.Dispose();
+        }
+
+        public void DeletePhotosFromAlbum(DeletePhotosFromAlbumModel model)
+        {
+            Album album = _unitOfWork.Albums.Get(model.AlbumId);
+            //IEnumerable<Photo> photosToRemove = album.Photos.Where(p => model.ArrayOfPhotoIds.Any(id => id == p.PhotoId));
+            album.Photos.RemoveAll(p => model.ArrayOfPhotoIds.Any(id => id == p.PhotoId));
+            _unitOfWork.Complete();
         }
     }
 }

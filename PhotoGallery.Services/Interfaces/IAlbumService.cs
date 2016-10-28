@@ -19,5 +19,6 @@ namespace PhotoGallery.Services.Interfaces
         AlbumDto GetAlbumByShortenedName(string albumName);
         bool IsAlbumExists(string name);
         void RemovePhotoFromAlbum(int photoId, int albumId);
+        void DeletePhotosFromAlbum(DeletePhotosFromAlbumModel model);
     }
 }
