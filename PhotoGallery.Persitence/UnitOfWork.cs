@@ -19,12 +19,15 @@ namespace PhotoGallery.Persistence
 
         public IUserProfileRepository UserProfiles { get; }
 
+        public IVoteRepository Votes { get; }
+
         public UnitOfWork()
         {
             _context = new GalleryContext();
             Albums = new AlbumRepository(_context);
             Photos = new PhotoRepository(_context);
             UserProfiles = new UserProfileRepository(_context);
+            Votes = new VoteRepository(_context);
         }
 
         public int Complete()

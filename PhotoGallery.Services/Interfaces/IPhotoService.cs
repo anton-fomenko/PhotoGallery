@@ -17,6 +17,7 @@ namespace PhotoGallery.Services.Interfaces
         byte[] GetThumbPhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);
         void Modify(Photo photo);
+        void DeletePhotos(List<int> photoIdList);
         void Remove(Photo photo);
         void AddPhoto(Photo model, Stream inputStream);
         byte[] GetMediumPhotoInBytesById(int id);

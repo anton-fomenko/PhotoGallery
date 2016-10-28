@@ -11,8 +11,11 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@Html.Partial("_PhotoList", Model)
-
+@using (Html.BeginForm("DeleteSelected", "Photos"))
+{
+    <input type="submit" value="Delete Selected" />
+    @Html.Partial("_PhotoList", Model)
+}
 @section Scripts{
     @Scripts.Render("~/bundles/photos")
 }

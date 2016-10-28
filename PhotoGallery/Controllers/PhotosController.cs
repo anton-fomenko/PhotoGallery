@@ -175,6 +175,20 @@ namespace PhotoGallery.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult DeleteSelected(List<int> selectedItems)
+        {
+            try
+            {
+                _photoService.DeletePhotos(selectedItems);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View("FailedToDeletePhoto");
+            }
+        }
+
         public ActionResult AddToAlbum(int id)
         {
             string userId = User.Identity.GetUserId();

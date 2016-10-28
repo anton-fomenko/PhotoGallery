@@ -28,8 +28,14 @@ namespace PhotoGallery.Persistence.Repositories
         public void RemoveIncludingBytesContent(Photo photo)
         {
             Photo realPhotoEntity = _context.Photos.Single(x => x.PhotoId == photo.PhotoId);
+
             PhotoBytesContent photoBytesContent = realPhotoEntity.PhotoBytesContent;
             _context.PhotoBytesContents.Remove(photoBytesContent);
+
+
+            List<Vote> votes = realPhotoEntity.Votes;
+            _context.Votes.RemoveRange(votes);
+
             _context.Photos.Remove(realPhotoEntity);
         }
 

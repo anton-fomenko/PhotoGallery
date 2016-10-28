@@ -224,5 +224,18 @@ namespace PhotoGallery.Services.Services
             }
             return photoDtos;
         }
+
+        public void DeletePhotos(List<int> photoIdList)
+        {
+            foreach (int photoId in photoIdList)
+            {
+                Photo photo = _unitOfWork.Photos.Get(photoId);
+                Remove(photo);
+            }
+
+            //List<Photo> photos = _unitOfWork.Photos.Find(p => photoIdList.Any(id => id == p.PhotoId)).ToList();
+            //_unitOfWork.Photos.RemoveRange(photos);
+            _unitOfWork.Complete();
+        }
     }
 }

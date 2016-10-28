@@ -10,6 +10,7 @@ namespace PhotoGallery.Persistence.Interfaces
     {
         IAlbumRepository Albums { get; }
         IPhotoRepository Photos { get; }
+        IVoteRepository Votes { get; }
         IUserProfileRepository UserProfiles { get; }
         int Complete();
     }

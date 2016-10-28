@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ApiControllers\DislikesController.cs" />
     <Compile Include="Controllers\ApiControllers\LikesController.cs" />
     <Compile Include="Controllers\ApiControllers\AlbumApiController.cs" />
+    <Compile Include="Controllers\ApiControllers\PhotoApiController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Photos\createPhoto.js" />
+    <Content Include="Scripts\Photos\deletePhotos.js" />
     <Content Include="Scripts\Photos\likes.js" />
     <Content Include="Scripts\Photos\photos.js" />
     <Content Include="Scripts\respond.js" />

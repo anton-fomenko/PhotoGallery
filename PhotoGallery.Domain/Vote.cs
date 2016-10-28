@@ -9,7 +9,7 @@ namespace PhotoGallery.Domain
     public class Vote
     {
         public int Id { get; set; }
-        public Photo Photo { get; set; }
+        public virtual Photo Photo { get; set; }
         public bool Liked { get; set; }
     }
 }
