@@ -30,8 +30,6 @@
     </dl>
 </div>
 
-<button class="deletePhotos" data-id="@Model.Id">Delete Selected From Album</button>
-
 <div clas="row" class="text-center">
     <a href='@Url.Action("ShowOriginalPhoto", "Photos", new {id = Model.MainPhoto.PhotoId})'
        title="@Model.Description">
@@ -44,6 +42,7 @@
 @if (Model.CanBeChanged)
 {
     <p>
+        <button class="deletePhotos" data-id="@Model.Id">Delete Selected From Album</button>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
