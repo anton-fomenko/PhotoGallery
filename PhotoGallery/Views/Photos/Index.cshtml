@@ -1,5 +1,5 @@
 ﻿@using PhotoGallery.Helpers
-@model List<PhotoGallery.Services.DataObjects.PhotoDto>
+@model PhotoGallery.Services.DataObjects.ListOfPhotosDto
 
 @{
     ViewBag.Title = "Photos";
@@ -14,7 +14,7 @@
 @using (Html.BeginForm("DeleteSelected", "Photos"))
 {
     <input type="submit" value="Delete Selected" />
-    @Html.Partial("_PhotoList", Model)
+    @Html.Partial("_PhotoList", Model.CanBeChanged)
 }
 @section Scripts{
     @Scripts.Render("~/bundles/photos")

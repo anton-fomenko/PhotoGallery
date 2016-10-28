@@ -80,8 +80,12 @@ namespace PhotoGallery.Services.Services
             AlbumDto albumDto = Mapper.Map<AlbumDto>(album);
 
             List<PhotoDto> photoDtoList = _photoService.PreparePhotoDtoList(userId, album.Photos);
-            albumDto.Photos = photoDtoList;
             albumDto.CanBeChanged = userId == albumDto.UserId;
+            albumDto.Photos = new ListOfPhotosDto
+            {
+                PhotoDtoList = photoDtoList,
+                CanBeChanged = albumDto.CanBeChanged
+            };
 
             return albumDto;
         }

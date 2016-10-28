@@ -27,11 +27,18 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
         }
 
-        public List<PhotoDto> GetPhotoDtosOfTheUser(string userId)
+        public ListOfPhotosDto GetPhotoDtosOfTheUser(string userId)
         {
             List<Photo> photos = _unitOfWork.Photos.GetPhotosByUserId(userId).ToList();
             List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
-            return photoDtos;
+
+            ListOfPhotosDto listOfPhotosDto = new ListOfPhotosDto
+            {
+                CanBeChanged = true,
+                PhotoDtoList = photoDtos
+            };
+
+            return listOfPhotosDto;
         }
 
         public byte[] GetOriginalPhotoInBytesById(int photoId)

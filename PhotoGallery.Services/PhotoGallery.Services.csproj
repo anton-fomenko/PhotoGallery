@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DataObjects\AlbumDto.cs" />
     <Compile Include="DataObjects\DeletePhotosFromAlbum.cs" />
+    <Compile Include="DataObjects\ListOfPhotosDto.cs" />
     <Compile Include="DataObjects\PhotoDto.cs" />
     <Compile Include="Interfaces\IAlbumService.cs" />
     <Compile Include="Interfaces\IPhotoService.cs" />

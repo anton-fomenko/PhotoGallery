@@ -231,6 +231,7 @@
     <Compile Include="Models\CreateAlbumViewModel.cs" />
     <Compile Include="Models\CreatePhotoViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListOfPhotosViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

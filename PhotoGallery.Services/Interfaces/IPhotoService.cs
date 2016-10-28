@@ -12,7 +12,7 @@ namespace PhotoGallery.Services.Interfaces
     public interface IPhotoService : IDisposable
     {
         List<Photo> GetPhotosOfTheUser(string userId);
-        List<PhotoDto> GetPhotoDtosOfTheUser(string userId);
+        ListOfPhotosDto GetPhotoDtosOfTheUser(string userId);
         byte[] GetOriginalPhotoInBytesById(int photoId);
         byte[] GetThumbPhotoInBytesById(int photoId);
         Photo GetPhotoById(int id);

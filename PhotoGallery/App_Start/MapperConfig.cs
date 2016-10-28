@@ -16,7 +16,7 @@ namespace PhotoGallery.App_Start
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Photo, PhotoDto>();
-                cfg.CreateMap<Album, AlbumDto>();
+                cfg.CreateMap<Album, AlbumDto>().ForMember(ptoperty => ptoperty.Photos, opt => opt.Ignore());
                 cfg.CreateMap<CreatePhotoViewModel, Photo>();
             });
         }   
