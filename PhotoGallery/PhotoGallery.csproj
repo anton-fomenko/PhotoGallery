@@ -216,6 +216,7 @@
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ApiControllers\DislikesController.cs" />
     <Compile Include="Controllers\ApiControllers\LikesController.cs" />
+    <Compile Include="Controllers\ApiControllers\AlbumApiController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Models\AlbumViewModel.cs" />
     <Compile Include="Models\CreateAlbumViewModel.cs" />
     <Compile Include="Models\CreatePhotoViewModel.cs" />
+    <Compile Include="Models\DeletePhotosFromAlbumModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PagedList.cs" />

@@ -16,7 +16,8 @@
 
                 $.ajax({
                     type: "DELETE",
-                    url: '/api/album',
+                    url: '/api/AlbumApi',
+                    contentType: 'application/json',
                     data: JSON.stringify(request),
                     success: function () {
                         location.reload();
