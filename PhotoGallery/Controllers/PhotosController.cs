@@ -192,7 +192,7 @@ namespace PhotoGallery.Controllers
         public ActionResult AddToAlbum(int photoId, int albumId)
         {
             _albumService.AddPhotoToAlbum(photoId, albumId);
-            return RedirectToAction("AddToAlbum", photoId);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Search(string name)
