@@ -14,7 +14,9 @@
                      alt="@Model.Description"
                      class="img-thumbnail" />
             </a>
-            Date : @Model.CreationDate
+            @Html.LabelFor(model => model.CreationDate) : @Model.CreationDate <br />
+            @Html.LabelFor(model => model.Location) : @Html.DisplayFor(model => model.Location)
+            </div>
         </div>
     </div>
 </div>
