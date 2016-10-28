@@ -32,15 +32,21 @@ namespace PhotoGallery.Domain
         [Display(Name = "Shutter Speed")]
         public string ShutterSpeed { get; set; }
 
+        [Range(0, int.MaxValue)]
         public int? Iso { get; set; }
   
         public bool? Flash { get; set; }
+
         public string UserId { get; set; }
 
         public virtual List<Album> Albums { get; set; }
+
         public virtual List<Vote> Votes { get; set; }
+
         public virtual PhotoBytesContent PhotoBytesContent { get; set; }
+
         public int Likes { get; set; }
+
         public int Dislikes { get; set; }
     }
 }

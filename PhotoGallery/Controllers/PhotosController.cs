@@ -53,7 +53,6 @@ namespace PhotoGallery.Controllers
             return File(imageData, "image/jpg");
         }
 
-
         public ActionResult ShowMediumPhoto(int id)
         {
             byte[] imageData = _photoService.GetMediumPhotoInBytesById(id);
