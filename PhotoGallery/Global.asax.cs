@@ -9,6 +9,7 @@ using PhotoGallery.Controllers;
 using PhotoGallery.Domain;
 using PhotoGallery.Models;
 using PhotoGallery.Services.DataObjects;
+using PhotoGallery.App_Start;
 
 namespace PhotoGallery
 {
@@ -21,13 +22,7 @@ namespace PhotoGallery
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Photo, PhotoDto>();
-                cfg.CreateMap<Album, AlbumDto>();
-                cfg.CreateMap<CreatePhotoViewModel, Photo>();
-            });
+            MapperConfig.Configure();
         }
 
         //protected void Application_Error()
