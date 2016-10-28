@@ -18,7 +18,6 @@ namespace PhotoGallery.Services.Interfaces
         void AddPhotoToAlbum(int photoId, int albumId);
         AlbumDto GetAlbumByShortenedName(string albumName, string userId);
         bool IsAlbumExists(string name);
-        void RemovePhotoFromAlbum(int photoId, int albumId);
         void DeletePhotosFromAlbum(DeletePhotosFromAlbumModel model);
     }
 }
