@@ -81,6 +81,7 @@ namespace PhotoGallery.Services.Services
 
             List<PhotoDto> photoDtoList = _photoService.PreparePhotoDtoList(userId, album.Photos);
             albumDto.Photos = photoDtoList;
+            albumDto.CanBeChanged = userId == albumDto.UserId;
 
             return albumDto;
         }

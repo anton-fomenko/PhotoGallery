@@ -15,5 +15,6 @@ namespace PhotoGallery.Services.DataObjects
         public virtual List<PhotoDto> Photos { get; set; }
         public virtual Photo MainPhoto { get; set; }
         public string UserId { get; set; }
+        public bool CanBeChanged { get; set; }
     }
 }
