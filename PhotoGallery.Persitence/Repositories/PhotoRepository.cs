@@ -61,7 +61,7 @@ namespace PhotoGallery.Persistence.Repositories
 
         public IEnumerable<Photo> Search(Photo photoModel, string userId)
         {
-            IQueryable<Photo> query = _context.Photos;
+            IQueryable<Photo> query = _context.Photos.Where(p => p.UserId == userId);
 
             if (photoModel.Name != null)
                 query = query.Where(s => s.Name == photoModel.Name);

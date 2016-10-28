@@ -56,18 +56,30 @@ namespace PhotoGallery.Services.Services
             return _unitOfWork.Photos.GetMediumPhoto(photoId);
         }
 
-        public List<PhotoDto> Search(Photo photoModel, string userId)
+        public ListOfPhotosDto Search(Photo photoModel, string userId)
         {
             List<Photo> photos = _unitOfWork.Photos.Search(photoModel, userId).ToList();
             List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
-            return photoDtos;
+
+            ListOfPhotosDto listOfPhotosDto = new ListOfPhotosDto
+            {
+                CanBeChanged = true,
+                PhotoDtoList = photoDtos
+            };
+            return listOfPhotosDto;
         }
 
-        public List<PhotoDto> SearchByName(string photoName, string userId)
+        public ListOfPhotosDto SearchByName(string photoName, string userId)
         {
             List<Photo> photos = _unitOfWork.Photos.SearchByName(photoName, userId).ToList();
             List<PhotoDto> photoDtos = PreparePhotoDtoList(userId, photos);
-            return photoDtos;
+
+            ListOfPhotosDto listOfPhotosDto = new ListOfPhotosDto
+            {
+                CanBeChanged = true,
+                PhotoDtoList = photoDtos
+            };
+            return listOfPhotosDto;
         }
 
         public int GetLikes(int photoId)

@@ -207,7 +207,7 @@ namespace PhotoGallery.Controllers
         public ActionResult Search(string name)
         {
             string userId = User.Identity.GetUserId();
-            List<PhotoDto> photos = _photoService.SearchByName(name, userId);
+            ListOfPhotosDto photos = _photoService.SearchByName(name, userId);
             return View("Index", photos);
         }
 
@@ -221,7 +221,7 @@ namespace PhotoGallery.Controllers
         public ActionResult AdvancedSearch(Photo searchModel)
         {
             string userId = User.Identity.GetUserId();
-            List<PhotoDto> photos = _photoService.Search(searchModel, userId);
+            ListOfPhotosDto photos = _photoService.Search(searchModel, userId);
             return View("Index", photos);
         }
 
