@@ -12,7 +12,8 @@ namespace PhotoGallery.Domain
         public string Name { get; set; }
 
         public string Description { get; set; }
-    
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddThh:mm}")]
         public DateTime? CreationDate { get; set; }
 
         public string Location { get; set; }
