@@ -40,12 +40,12 @@
         </div>
     </div>
 
-    <select name="SelectedMainPhotoId">
-        @foreach (Photo photo in Model.PhotosOfTheUser)
-        {
-            <option value="@photo.PhotoId">@photo.Name</option>
-        }
-    </select>
+    @Html.DropDownListFor(
+    x => x.SelectedMainPhotoId,
+    new SelectList(Model.PhotosOfTheUser, "PhotoId", "Name"),
+    "-- Please select Main Photo for the Album --"
+    )
+    @Html.ValidationMessageFor(x => x.SelectedMainPhotoId)
 }
 
 <div>
