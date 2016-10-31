@@ -3,37 +3,41 @@
 
 <div class="col-sm-12">
     <div class="row">
-        @foreach (var item in Model.PhotoDtoList)
+        @for (int i = 0; i < Model.PhotoDtoList.Count; i++)
         {
+            if (i % 2 == 0)
+            {
+                <div class="clearfix"></div>
+            }
             <div class="col-sm-6">
                 <a class="thumbnail"
                    data-target="#photoModal"
                    data-toggle="modal"
-                   data-id="@item.PhotoId">
-                    <p>@item.Name</p>
-                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = item.PhotoId }), @item.Description)
+                   data-id="@Model.PhotoDtoList[i].PhotoId">
+                    <p>@Model.PhotoDtoList[i].Name</p>
+                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = Model.PhotoDtoList[i].PhotoId }), @Model.PhotoDtoList[i].Description)
                 </a>
 
                 @if (Model.CanBeChanged)
                 {
-                    <input type="checkbox" name="selectedItems" class="img-checkbox" data-photoid="@item.PhotoId" value="@item.PhotoId" />
-                    @Html.ActionLink("Edit", "Edit", "Photos", new { id = item.PhotoId }, null)
+                    <input type="checkbox" name="selectedItems" class="img-checkbox" data-photoid="@Model.PhotoDtoList[i].PhotoId" value="@Model.PhotoDtoList[i].PhotoId" />
+                    @Html.ActionLink("Edit", "Edit", "Photos", new { id = Model.PhotoDtoList[i].PhotoId }, null)
                     @:|
-                    @Html.ActionLink("Delete", "Delete", "Photos", new { id = item.PhotoId }, null)
+                    @Html.ActionLink("Delete", "Delete", "Photos", new { id = Model.PhotoDtoList[i].PhotoId }, null)
                     @:|
-                    @Html.ActionLink("Add to Album", "AddToAlbum", "Photos", new { id = item.PhotoId }, null)
+                    @Html.ActionLink("Add to Album", "AddToAlbum", "Photos", new { id = Model.PhotoDtoList[i].PhotoId }, null)
                 }
 
-                <button type="button" class="btn btn-default btn-sm btn-like @(item.Liked ? "btn-success" : "")" @(item.CanVote ? "" : "disabled")>
+                <button type="button" class="btn btn-default btn-sm btn-like @(Model.PhotoDtoList[i].Liked ? "btn-success" : "")" @(Model.PhotoDtoList[i].CanVote ? "" : "disabled")>
                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    <span class="like" id="@item.PhotoId"></span>
+                    <span class="like" id="@Model.PhotoDtoList[i].PhotoId"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-sm btn-dislike @(!item.Liked && !item.CanVote ? "btn-danger" : "")" @(item.CanVote ? "" : "disabled")>
+                <button type="button" class="btn btn-default btn-sm btn-dislike @(!Model.PhotoDtoList[i].Liked && !Model.PhotoDtoList[i].CanVote ? "btn-danger" : "")" @(Model.PhotoDtoList[i].CanVote ? "" : "disabled")>
                     <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                    <span class="dislike" id="@item.PhotoId"></span>
+                    <span class="dislike" id="@Model.PhotoDtoList[i].PhotoId"></span>
                 </button>
             </div>
-                }
+        }
     </div>
 </div>
 
