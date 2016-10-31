@@ -1,4 +1,5 @@
-﻿@model List<PhotoGallery.Domain.Album>
+﻿@using PhotoGallery.Domain
+@model List<Album>
 
 @{
     ViewBag.Title = "Albums";
@@ -13,10 +14,10 @@
     <input type="submit" class="btn btn-info"
            value="SEARCH PHOTO" />
 
-    <a href='@Url.Action("AdvancedSearch", "Photos")'>
-        <input type="button" class="btn btn-info"
-                value="ADVANCED SEARCH" />
-    </a>
+        <a href='@Url.Action("AdvancedSearch", "Photos")'>
+            <input type="button" class="btn btn-info"
+                   value="ADVANCED SEARCH" />
+        </a>
 }
 
 <p>
@@ -25,23 +26,28 @@
 
 <div class="col-sm-12">
     <div class="row">
-        @foreach (var item in Model)
+        @for (int i = 0; i < Model.Count; i++)
         {
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href='@Url.Action("Details", "Albums", new {albumName = item.Name.Replace(" ", "-")})' class="thumbnail">
-                    <p>@item.Name</p>
-                    <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = item.MainPhoto.PhotoId})'
-                         alt="@item.Description"/>
+            if (i % 4 == 0)
+            {
+                <div class="clearfix"></div>
+            }
+            <div class="col-sm-3">
+                <a href='@Url.Action("Details", "Albums", new {albumName = Model[i].Name.Replace(" ", "-")})' class="thumbnail">
+                    <p>@Model[i].Name</p>
+                    <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = Model[i].MainPhoto.PhotoId})'
+                         alt="@Model[i].Description" />
 
                 </a>
 
                 @{
                     RouteValueDictionary routeValueDictinary = new RouteValueDictionary();
-                    routeValueDictinary["albumName"] = item.Name.Replace(" ", "-");
+                    routeValueDictinary["albumName"] = Model[i].Name.Replace(" ", "-");
                 }
                 <button class="copyToClipboardButton" data-url='@Url.Action("Details", "Albums", routeValueDictinary, Request.Url?.Scheme, null)'>Get Link</button>
             </div>
-        }
+                    }
+
     </div>
 </div>
 
