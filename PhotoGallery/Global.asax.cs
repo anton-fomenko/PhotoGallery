@@ -53,7 +53,7 @@ namespace PhotoGallery
                 Server.ClearError();
             }
 
-            Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, exception.Message));
+            Response.Redirect(String.Format("~/Error/{0}", action));
         }
     }
 }
