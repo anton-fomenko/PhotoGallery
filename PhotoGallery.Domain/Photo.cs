@@ -41,6 +41,11 @@ namespace PhotoGallery.Domain
 
         public virtual List<Album> Albums { get; set; }
 
+        /// <summary>
+        /// List of Albums where this Photo is set as a Main Photo
+        /// </summary>
+        public virtual List<Album> MainPhotoAlbums { get; set; }
+
         public virtual List<Vote> Votes { get; set; }
 
         public virtual PhotoBytesContent PhotoBytesContent { get; set; }
