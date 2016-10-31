@@ -43,8 +43,8 @@
 {
     <p>
         <button class="deletePhotos" data-id="@Model.Id">Delete Selected From Album</button>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+        @Html.ActionLink("Edit Album", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Delete Album", "Delete", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 }
