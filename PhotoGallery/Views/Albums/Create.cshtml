@@ -45,7 +45,7 @@
     new SelectList(Model.PhotosOfTheUser, "PhotoId", "Name"),
     "-- Please select Main Photo for the Album --"
     )
-    @Html.ValidationMessageFor(x => x.SelectedMainPhotoId)
+    @Html.ValidationMessageFor(x => x.SelectedMainPhotoId, "", new { @class = "text-danger" })
 }
 
 <div>
