@@ -27,3 +27,7 @@ textarea {
     height: 200px;
     width: 200px;
 }
+
+.photo-card {
+    cursor: pointer
+}
