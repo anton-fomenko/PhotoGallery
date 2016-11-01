@@ -15,6 +15,10 @@ namespace PhotoGallery.Services.DataObjects
 
         [DefaultValue(true)]
         public bool CanVote { get; set; }
+
+        /// <summary>
+        /// Returns True if current user liked the Photo. Returns null if user did not like or dislike the photo yet.
+        /// </summary>
         public bool? Liked { get; set; }
 
         public string Name { get; set; }

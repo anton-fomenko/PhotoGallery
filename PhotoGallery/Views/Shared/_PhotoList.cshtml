@@ -29,24 +29,12 @@
                 }
 
                 <button type="button" class="btn btn-default btn-sm btn-like 
-                          @{ 
-                              if (Model.PhotoDtoList[i].Liked.HasValue)
-                              {
-                                  @(Model.PhotoDtoList[i].Liked.Value == true ? "btn-success" : "")
-                              }
-                          }"
-                         @(Model.PhotoDtoList[i].CanVote ? "" : "disabled")>
+                        @Html.ButtonVoteClasses(Model.PhotoDtoList[i].Liked, Model.PhotoDtoList[i].CanVote, true)">
                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                     <span class="like" id="@Model.PhotoDtoList[i].PhotoId"></span>
                 </button>
-                <button type="button" class="btn btn-default btn-sm btn-dislike
-                                                  @{ 
-                              if (Model.PhotoDtoList[i].Liked.HasValue)
-                              {
-                                  @(Model.PhotoDtoList[i].Liked.Value == false && !Model.PhotoDtoList[i].CanVote ? "btn-danger" : "") 
-                              }
-                          }"
-                         @(Model.PhotoDtoList[i].CanVote ? "" : "disabled")>
+                <button type="button" class="btn btn-default btn-sm btn-dislike 
+                        @Html.ButtonVoteClasses(Model.PhotoDtoList[i].Liked, Model.PhotoDtoList[i].CanVote, false)">
                     <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                     <span class="dislike" id="@Model.PhotoDtoList[i].PhotoId"></span>
                 </button>
