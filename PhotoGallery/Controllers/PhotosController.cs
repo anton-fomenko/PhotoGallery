@@ -41,24 +41,28 @@ namespace PhotoGallery.Controllers
             return View(_photoService.GetPhotoDtosOfTheUser(userId));
         }
 
+        [AllowAnonymous]
         public ActionResult ShowOriginalPhoto(int id)
         {
             byte[] imageData = _photoService.GetOriginalPhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 
+        [AllowAnonymous]
         public ActionResult ShowThumbPhoto(int id)
         {
             byte[] imageData = _photoService.GetThumbPhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 
+        [AllowAnonymous]
         public ActionResult ShowMediumPhoto(int id)
         {
             byte[] imageData = _photoService.GetMediumPhotoInBytesById(id);
             return File(imageData, "image/jpg");
         }
 
+        [AllowAnonymous]
         public ActionResult PhotoModalDialog(int? id)
         {
             if (id == null)

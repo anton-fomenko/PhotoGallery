@@ -229,7 +229,13 @@ namespace PhotoGallery.Services.Services
                 PhotoDto photoDto = Mapper.Map<PhotoDto>(photo);
 
                 UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
-                Vote vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
+
+                Vote vote = null;
+                if (userProfile != null)
+                {
+                    vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
+                }
+
                 photoDto.CanVote = vote == null;
 
                 if (!photoDto.CanVote)

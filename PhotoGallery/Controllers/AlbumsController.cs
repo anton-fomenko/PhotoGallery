@@ -38,7 +38,7 @@ namespace PhotoGallery.Controllers
             return View(listOfAlbums);
         }
 
-        // GET: Albums/Details/5
+        [AllowAnonymous]
         public ActionResult Details(string albumName)
         {
             if (albumName == null)
