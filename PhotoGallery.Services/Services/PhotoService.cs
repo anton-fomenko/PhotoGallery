@@ -259,8 +259,6 @@ namespace PhotoGallery.Services.Services
                 Remove(photo);
             }
 
-            //List<Photo> photos = _unitOfWork.Photos.Find(p => photoIdList.Any(id => id == p.PhotoId)).ToList();
-            //_unitOfWork.Photos.RemoveRange(photos);
             _unitOfWork.Complete();
         }
     }
