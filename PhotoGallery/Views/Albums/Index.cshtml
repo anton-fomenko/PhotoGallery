@@ -36,7 +36,8 @@
                 <a href='@Url.Action("Details", "Albums", new {albumName = Model[i].Name.Replace(" ", "-")})' class="thumbnail">
                     <p>@Model[i].Name</p>
                     <img src='@Url.Action("ShowThumbPhoto", "Photos", new {id = Model[i].MainPhoto.PhotoId})'
-                         alt="@Model[i].Description" />
+                         alt="@Model[i].Description"
+                         class="img-200" />
 
                 </a>
 

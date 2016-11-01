@@ -15,7 +15,8 @@
                    data-toggle="modal"
                    data-id="@Model.PhotoDtoList[i].PhotoId">
                     <p>@Model.PhotoDtoList[i].Name</p>
-                    @Html.Image(Url.Action("ShowThumbPhoto", "Photos", new { id = Model.PhotoDtoList[i].PhotoId }), @Model.PhotoDtoList[i].Description)
+                    <img src="@Url.Action("ShowThumbPhoto", "Photos", new { id = Model.PhotoDtoList[i].PhotoId })" alt="@Model.PhotoDtoList[i].Description"
+                         class="img-200" />
                 </a>
 
                 @if (Model.CanBeChanged)
