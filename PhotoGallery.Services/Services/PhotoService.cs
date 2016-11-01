@@ -10,6 +10,8 @@ using PhotoGallery.Domain;
 using PhotoGallery.Persistence.Interfaces;
 using PhotoGallery.Services.DataObjects;
 using PhotoGallery.Services.Interfaces;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace PhotoGallery.Services.Services
 {
@@ -163,19 +165,20 @@ namespace PhotoGallery.Services.Services
             {
                 PhotoBytesContent photoBytesContent = new PhotoBytesContent();
 
-                Size imgSize = NewImageSize(img.Size, new Size(200, 200));
-                using (Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
+                Bitmap bitmapThumb = ResizeImage(img, 200, 200);
+                using (Image newImg = bitmapThumb)
                 {
                     photoBytesContent.ThumbPhoto = ImageToByteArray(newImg);
                 }
 
-                using (Image newImg = new Bitmap(img, img.Size.Width, img.Size.Height))
+                Bitmap bitmapOriginal = ResizeImage(img, img.Size.Width, img.Size.Height);
+                using (Image newImg = bitmapOriginal)
                 {
                     photoBytesContent.OriginalPhoto = ImageToByteArray(newImg);
                 }
 
-                Size mediumSize = NewImageSize(img.Size, new Size(800, 800));
-                using (Image newImg = new Bitmap(img, mediumSize.Width, mediumSize.Height))
+                Bitmap bitmapMedium = ResizeImage(img, 800, 800);
+                using (Image newImg = bitmapMedium)
                 {
                     photoBytesContent.MediumPhoto = ImageToByteArray(newImg);
                 }
@@ -195,23 +198,36 @@ namespace PhotoGallery.Services.Services
             }
         }
 
-        private Size NewImageSize(Size imageSize, Size newSize)
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        public static Bitmap ResizeImage(Image image, int width, int height)
         {
-            Size finalSize;
-            double tempval;
-            if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
             {
-                if (imageSize.Height > imageSize.Width)
-                    tempval = newSize.Height / (imageSize.Height * 1.0);
-                else
-                    tempval = newSize.Width / (imageSize.Width * 1.0);
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
             }
-            else
-                finalSize = imageSize; // image is already small size
 
-            return finalSize;
+            return destImage;
         }
 
         private byte[] ImageToByteArray(Image imageIn)
