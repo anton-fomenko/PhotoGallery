@@ -15,7 +15,7 @@ namespace PhotoGallery.Services.DataObjects
 
         [DefaultValue(true)]
         public bool CanVote { get; set; }
-        public bool Liked { get; set; }
+        public bool? Liked { get; set; }
 
         public string Name { get; set; }
 

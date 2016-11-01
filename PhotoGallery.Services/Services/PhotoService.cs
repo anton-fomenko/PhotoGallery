@@ -231,12 +231,15 @@ namespace PhotoGallery.Services.Services
                 UserProfile userProfile = _unitOfWork.UserProfiles.SingleOrDefault(u => u.UserIdentityId == userId);
 
                 Vote vote = null;
+                photoDto.CanVote = false;
                 if (userProfile != null)
                 {
                     vote = userProfile.Votes.SingleOrDefault(v => v.Photo.PhotoId == photo.PhotoId);
+                    if (vote == null)
+                    {
+                        photoDto.CanVote = true;
+                    }
                 }
-
-                photoDto.CanVote = vote == null;
 
                 if (!photoDto.CanVote)
                 {
